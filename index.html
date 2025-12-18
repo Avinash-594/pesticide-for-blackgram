@@ -2,268 +2,209 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Avinash Pesticide Store</title>
+<title>Farmer Agro Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Icons -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-
-<!-- Slider -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-:root{
-  --dark:#0f172a;
-  --card:#111827;
-  --accent:#facc15;
-  --muted:#9ca3af;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family: "Segoe UI",sans-serif;
-  background:#020617;
-  color:white;
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background:#f4f8f4;
+  color:#1f2937;
 }
 
 /* ---------- HERO ---------- */
 .hero{
-  height:100vh;
-  position:relative;
+  background:linear-gradient(to right,#d9f99d,#ecfeff);
+  padding:70px 8%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to right,rgba(0,0,0,.75),rgba(0,0,0,.35));
-  z-index:1;
+.hero h1{
+  font-size:3rem;
+  color:#14532d;
+}
+.hero p{
+  font-size:1.1rem;
+  max-width:500px;
 }
 .hero img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:380px;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
 }
 
-/* ---------- HERO CONTENT ---------- */
-.hero-content{
-  position:absolute;
-  z-index:2;
-  top:50%;
-  left:8%;
-  transform:translateY(-50%);
-  max-width:600px;
+/* ---------- UPLOAD ---------- */
+.upload{
+  text-align:center;
+  margin:30px;
 }
-.hero-content h1{
-  font-size:3rem;
-  margin-bottom:10px;
-}
-.hero-content p{
-  color:var(--muted);
-  font-size:1.1rem;
-}
-.hero-content button{
-  margin-top:20px;
-  padding:14px 26px;
-  border:none;
-  background:var(--accent);
-  color:black;
-  font-weight:bold;
-  font-size:1rem;
-  border-radius:8px;
-  cursor:pointer;
+.upload input{
+  padding:12px;
+  border:2px dashed #22c55e;
+  background:white;
 }
 
-/* ---------- NAV ICONS ---------- */
-.nav-icons{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:35px;
-  z-index:2;
-}
-.nav-icons i{
-  font-size:1.6rem;
-  color:white;
-  opacity:.85;
-}
-
-/* ---------- MAIN LAYOUT ---------- */
+/* ---------- LAYOUT ---------- */
 .main{
   display:grid;
-  grid-template-columns:260px 1fr;
+  grid-template-columns:220px 1fr 220px;
+  gap:20px;
+  padding:20px;
 }
 
-/* ---------- SIDEBAR ---------- */
-.sidebar{
-  background:#020617;
-  padding:25px;
-  border-right:1px solid #1f2933;
+/* ---------- SIDE ---------- */
+.side{
+  background:white;
+  padding:15px;
+  border-radius:16px;
+  box-shadow:0 15px 30px rgba(0,0,0,.08);
 }
-.sidebar h3{
-  margin:20px 0 10px;
-  color:var(--accent);
+.side h3{
+  color:#166534;
 }
-.sidebar div{
-  padding:8px 0;
-  color:#d1d5db;
+.side div{
+  padding:8px;
   cursor:pointer;
 }
-
-/* ---------- TOP BAR ---------- */
-.topbar{
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.search{
-  background:#020617;
-  border:1px solid #1f2933;
-  padding:12px 15px;
-  width:300px;
-  color:white;
-  border-radius:6px;
+.side div:hover{
+  background:#dcfce7;
 }
 
 /* ---------- PRODUCTS ---------- */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:22px;
-  padding:20px;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
 }
+
+/* ---------- CARD ---------- */
 .card{
-  background:linear-gradient(145deg,#020617,#020617);
-  border:1px solid #1f2933;
-  border-radius:14px;
+  background:white;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
   overflow:hidden;
-  transition:.3s;
+  transition:.4s;
 }
 .card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-10px) scale(1.03);
 }
 .card img{
   width:100%;
   height:180px;
-  object-fit:cover;
+  object-fit:contain;
+  background:#f9fafb;
 }
 .card .info{
   padding:15px;
 }
-.card h4{font-size:1.05rem}
-.card small{color:var(--muted)}
 .price{
-  margin:10px 0;
-  color:var(--accent);
+  color:#16a34a;
   font-weight:bold;
+  margin:8px 0;
 }
 .card button{
   width:100%;
   padding:10px;
-  background:var(--accent);
   border:none;
-  border-radius:6px;
-  font-weight:bold;
+  background:#22c55e;
+  color:white;
+  border-radius:10px;
   cursor:pointer;
 }
 
 /* ---------- FOOTER ---------- */
 footer{
   text-align:center;
-  padding:25px;
-  color:#9ca3af;
-  border-top:1px solid #1f2933;
+  padding:20px;
+  color:#4b5563;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== HERO SLIDER ===== -->
-<div class="hero swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <img src="background.jpg">
-    </div>
-    <div class="swiper-slide">
-      <img src="background2.jpg">
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Agro Products for Farmers</h1>
+    <p>All pesticide brands, categories and prices in one place</p>
   </div>
+  <img src="tractor.png">
+</section>
 
-  <div class="hero-content">
-    <h1>Welcome to Avinash Pesticide Store</h1>
-    <p>Trusted pesticides, nutrients & crop protection products for farmers</p>
-    <button onclick="document.getElementById('shop').scrollIntoView()">Explore Products</button>
-  </div>
-
-  <div class="nav-icons">
-    <i class="fa-solid fa-house"></i>
-    <i class="fa-solid fa-seedling"></i>
-    <i class="fa-solid fa-cart-shopping"></i>
-    <i class="fa-solid fa-phone"></i>
-  </div>
+<!-- CSV UPLOAD -->
+<div class="upload">
+  <h3>Upload ferti CSV</h3>
+  <input type="file" accept=".csv" onchange="loadCSV(event)">
 </div>
 
-<!-- ===== MAIN ===== -->
-<div class="main" id="shop">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h3>Brands</h3>
-    <div>Syngenta</div>
-    <div>Indofil</div>
-    <div>Tata Gold</div>
-    <div>UPL</div>
-
-    <h3>Categories</h3>
-    <div>Insecticide</div>
-    <div>Fungicide</div>
-    <div>Nutrients</div>
-    <div>Mosquito Killer</div>
-    <div>Weed Killer</div>
-  </aside>
-
-  <!-- CONTENT -->
-  <section>
-    <div class="topbar">
-      <h2>Products</h2>
-      <input class="search" placeholder="Search pesticides...">
-    </div>
-
-    <div class="products">
-      <div class="card">
-        <img src="images/actara.jpg">
-        <div class="info">
-          <h4>Actara</h4>
-          <small>Syngenta • Insecticide</small>
-          <div class="price">₹450 / 100ml</div>
-          <button onclick="buy()">Buy on WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- MAIN -->
+<div class="main">
+  <div class="side" id="brands"><h3>Brands</h3></div>
+  <div class="products" id="products"></div>
+  <div class="side" id="categories"><h3>Categories</h3></div>
 </div>
 
-<footer>
-© 2025 Avinash Pesticide Store • Farmer First
-</footer>
+<footer>© Farmer Friendly Agro Store</footer>
 
-<!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
-new Swiper(".swiper",{
-  loop:true,
-  autoplay:{delay:3500},
-  effect:"fade"
-});
+let data=[], currentBrand="", currentCategory="";
 
-function buy(){
-  const msg = encodeURIComponent(
-    "Hello Avinash Pesticide Store,%0AProduct: Actara%0AQty: 100ml%0APrice: ₹450"
-  );
-  window.open("https://wa.me/91XXXXXXXXXX?text="+msg,"_blank");
+function loadCSV(e){
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = ()=>parseCSV(reader.result);
+  reader.readAsText(file);
+}
+
+function parseCSV(text){
+  const rows = text.trim().split("\n").slice(1);
+  data = rows.map(r=>{
+    const [brand,category,name,price,image]=r.split(",");
+    return {brand,category,name,price,image};
+  });
+  renderFilters();
+  renderProducts();
+}
+
+function renderFilters(){
+  brands.innerHTML="<h3>Brands</h3>";
+  categories.innerHTML="<h3>Categories</h3>";
+
+  [...new Set(data.map(d=>d.brand))].forEach(b=>{
+    brands.innerHTML+=`<div onclick="currentBrand='${b}';renderProducts()">${b}</div>`;
+  });
+
+  [...new Set(data.map(d=>d.category))].forEach(c=>{
+    categories.innerHTML+=`<div onclick="currentCategory='${c}';renderProducts()">${c}</div>`;
+  });
+}
+
+function renderProducts(){
+  products.innerHTML="";
+  data.filter(d=>
+    (!currentBrand || d.brand===currentBrand) &&
+    (!currentCategory || d.category===currentCategory)
+  ).forEach(p=>{
+    products.innerHTML+=`
+      <div class="card">
+        <img src="${p.image}">
+        <div class="info">
+          <h4>${p.name}</h4>
+          <small>${p.brand} • ${p.category}</small>
+          <div class="price">₹${p.price}</div>
+          <button>Buy</button>
+        </div>
+      </div>`;
+  });
 }
 </script>
 
