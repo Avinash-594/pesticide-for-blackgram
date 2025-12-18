@@ -1,327 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Welcome To Avinash Pesticide Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<style>
-/* ===== COLOR THEME (SUITS GREEN BLACK-GRAM BACKGROUND) ===== */
-:root{
-  --primary:#1b3a2b;      /* deep agricultural green */
-  --secondary:#f4f7f5;   /* light neutral */
-  --accent:#f59e0b;      /* warm gold for buttons */
-  --card:#ffffff;
-  --border:#e5e7eb;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Poppins,Arial;
-  background:var(--secondary);
-  color:#111827;
-}
+  <meta charset="UTF-8" />
+  <title>Avinash Pesticide Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-/* ===== HERO / WELCOME PAGE ===== */
-.hero{
-  height:100vh;
-  background:url('background.jpg') center/cover no-repeat;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.55); /* dark overlay for text clarity */
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  color:#ffffff;
-  max-width:700px;
-  padding:20px;
-}
-.hero-content img{
-  width:110px;
-  margin-bottom:20px;
-}
-.hero-content h1{
-  font-size:38px;
-  margin:0 0 12px;
-  font-weight:600;
-}
-.hero-content p{
-  font-size:17px;
-  opacity:.95;
-}
-.scroll-down{
-  margin-top:40px;
-  font-size:14px;
-  opacity:.85;
-}
+  <!-- Google Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-/* ===== STICKY NAV ===== */
-nav{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#ffffff;
-  border-bottom:1px solid var(--border);
-  padding:12px 22px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-nav .search{flex:1}
-nav input{
-  width:100%;
-  padding:11px 14px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  font-size:14px;
-}
-.nav-icons{
-  display:flex;
-  gap:20px;
-  font-size:18px;
-  color:#334155;
-}
-.nav-icons i{cursor:pointer}
-.cart-btn{
-  background:var(--primary);
-  color:#fff;
-  padding:9px 16px;
-  border-radius:12px;
-  font-weight:500;
-  cursor:pointer;
-}
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f4f6f8; color: #222; }
 
-/* ===== LAYOUT ===== */
-.container{
-  display:grid;
-  grid-template-columns:270px 1fr;
-}
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url('background.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content { position: relative; color: #fff; }
+    .hero img { width: 120px; margin-bottom: 20px; }
+    .hero h1 { font-size: 3rem; }
+    .hero h1 span { color: #f5c542; }
 
-/* ===== SIDEBAR ===== */
-.sidebar{
-  background:#ffffff;
-  padding:24px;
-  border-right:1px solid var(--border);
-}
-.sidebar h3{
-  font-size:13px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  margin:0 0 12px;
-  color:#64748b;
-}
-.sidebar ul{list-style:none;padding:0;margin:0 0 24px}
-.sidebar li{
-  padding:11px 14px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:14px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.sidebar li:hover{background:#f1f5f9;font-weight:500}
+    /* TOP BAR */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .icons i { margin: 0 12px; font-size: 18px; cursor: pointer; }
+    .search { padding: 8px 12px; width: 250px; }
 
-/* ===== MAIN ===== */
-.main{padding:28px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:26px;
-}
+    /* LAYOUT */
+    .container { display: flex; padding: 20px; }
+    .sidebar {
+      width: 240px;
+      background: #0f172a;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      height: fit-content;
+    }
+    .sidebar h3 { margin-bottom: 10px; color: #f5c542; }
+    .sidebar div { margin: 6px 0; cursor: pointer; }
 
-/* ===== PRODUCT CARD ===== */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  transition:.3s ease;
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 35px rgba(0,0,0,.08);
-}
-.card img{
-  height:180px;
-  object-fit:contain;
-  background:#f8fafc;
-  border-radius:16px;
-  margin-bottom:14px;
-}
-.card h4{margin:0 0 6px;font-size:15px}
-.card p{margin:0 0 12px;font-size:12px;color:#64748b}
-.card select,.card input{
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  margin-bottom:8px;
-}
-.card button{
-  margin-top:auto;
-  background:var(--accent);
-  color:#000;
-  border:none;
-  padding:12px;
-  border-radius:14px;
-  font-weight:600;
-  cursor:pointer;
-}
+    .products {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-left: 20px;
+    }
 
-/* ===== CART ===== */
-#cartModal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-.cart-box{
-  background:#fff;
-  width:92%;
-  max-width:540px;
-  border-radius:20px;
-  padding:26px;
-}
-.cart-box h3{margin-top:0}
-.cart-item{font-size:14px;margin-bottom:8px}
-.total{font-weight:700;margin-top:16px}
-.cart-box button{width:100%;padding:13px;border:none;border-radius:14px;margin-top:12px}
-.buy{background:#16a34a;color:#fff}
-.close{background:#e5e7eb}
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 15px; }
+    .price { color: #0f172a; font-weight: 600; }
 
-@media(max-width:900px){
-  .container{grid-template-columns:1fr}
-  .sidebar{border-right:none;border-bottom:1px solid var(--border)}
-}
-</style>
+    select, button { padding: 8px; margin-top: 8px; width: 100%; }
+    button { background: #0f172a; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+
+    /* CART */
+    .cart {
+      position: fixed;
+      right: 20px; bottom: 20px;
+      background: #0f172a; color: #fff;
+      padding: 15px; border-radius: 12px;
+    }
+
+  </style>
 </head>
 <body>
 
-<!-- ===== WELCOME / HERO ===== -->
-<section class="hero">
-  <div class="hero-content">
-    <img src="logo.jpg" alt="Avinash Pesticide Store Logo">
-    <h1>Welcome to Avinash Pesticide Store</h1>
-    <p>Quality pesticides • Trusted brands • Bulk supply for farmers</p>
-    <div class="scroll-down">Scroll down to explore products ↓</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="logo.jpg" alt="Logo">
+      <h1>Welcome to <span>Welcome To Avinash Pesticide Store</span></h1>
+    </div>
+  </section>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="icons">
+      <i class="fa fa-house"></i>
+      <i class="fa fa-seedling"></i>
+      <i class="fa fa-location-dot"></i>
+      <i class="fa fa-phone"></i>
+    </div>
+    <input class="search" id="search" placeholder="Search products..." />
+    <i class="fa fa-cart-shopping"></i>
   </div>
-</section>
 
-<!-- ===== NAVIGATION ===== -->
-<nav>
-  <div class="search"><input id="search" placeholder="Search products, brands, categories"></div>
-  <div class="nav-icons">
-    <i class="fa-solid fa-house"></i>
-    <i class="fa-solid fa-seedling"></i>
-    <i class="fa-solid fa-location-dot"></i>
-    <i class="fa-solid fa-phone"></i>
+  <!-- MAIN -->
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Brands</h3>
+      <div>Syngenta</div>
+      <div>Indofil</div>
+      <div>Tata Gold</div>
+
+      <h3 style="margin-top:15px">Categories</h3>
+      <div>Pesticide</div>
+      <div>Seeds</div>
+      <div>Nutrients</div>
+      <div>Mosquito killer</div>
+      <div>fungicide</div>
+      <div>insecticide</div>
+    </aside>
+
+    <section class="products" id="products"></section>
   </div>
-  <div class="cart-btn" onclick="openCart()"><i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span></div>
-</nav>
 
-<!-- ===== CONTENT ===== -->
-<div class="container">
-  <aside class="sidebar">
-    <h3>Brands</h3>
-    <ul id="brandList"></ul>
-    <h3>Categories</h3>
-    <ul id="catList"></ul>
-  </aside>
-
-  <main class="main">
-    <div class="grid" id="products"></div>
-  </main>
-</div>
-
-<!-- ===== CART ===== -->
-<div id="cartModal">
-  <div class="cart-box">
-    <h3>Order Summary</h3>
-    <div id="cartItems"></div>
-    <div class="total" id="cartTotal"></div>
-    <button class="buy" onclick="buyWhatsApp()">Buy on WhatsApp</button>
-    <button class="close" onclick="closeCart()">Close</button>
+  <!-- CART -->
+  <div class="cart">
+    <div id="cartItems">0 items</div>
+    <div id="cartTotal">₹0</div>
+    <button onclick="checkout()">Buy on WhatsApp</button>
   </div>
-</div>
 
 <script>
-/* ===== YES, THIS WORKS ON AWS S3 ===== */
-const phone='91XXXXXXXXXX';
+let cart = [];
 
-const productsData=[
- {name:'Actara 25 WG',brand:'Syngenta',category:'Insecticide',image:'images/actara.jpg',sizes:{'10ml':50,'100ml':180,'250ml':420,'1000ml':1500}},
- {name:'Saaf Fungicide',brand:'UPL',category:'Fungicide',image:'images/saaf.jpg',sizes:{'100ml':120,'250ml':260,'1000ml':900}},
- {name:'Neem Oil',brand:'Tata Gold',category:'Plant Nutrients',image:'images/neem.jpg',sizes:{'100ml':90,'500ml':350,'1000ml':650}},
- {name:'Mosquito Killer',brand:'Indofil',category:'Mosquito Medicine',image:'images/mosquito.jpg',sizes:{'100ml':150,'500ml':600}}
-];
-
-let cart=[],filterCat='',filterBrand='';
-
-function renderFilters(){
-  brandList.innerHTML=[...new Set(productsData.map(p=>p.brand))]
-    .map(b=>`<li onclick="filterBrand='${b}';render()"><i class='fa-solid fa-industry'></i>${b}</li>`).join('');
-  catList.innerHTML=[...new Set(productsData.map(p=>p.category))]
-    .map(c=>`<li onclick="filterCat='${c}';render()"><i class='fa-solid fa-layer-group'></i>${c}</li>`).join('');
-}
-
-function render(){
-  const q=search.value.toLowerCase();
-  products.innerHTML='';
-  productsData.filter(p=>
-    (!filterCat||p.category===filterCat)&&
-    (!filterBrand||p.brand===filterBrand)&&
-    (p.name.toLowerCase().includes(q)||p.brand.toLowerCase().includes(q))
-  ).forEach((p,i)=>{
-    const sizes=Object.keys(p.sizes)
-      .map(s=>`<option value="${s}">${s} - ₹${p.sizes[s]}</option>`).join('');
-    products.innerHTML+=`
-      <div class="card">
-        <img src="${p.image}">
-        <h4>${p.name}</h4>
-        <p>${p.brand} • ${p.category}</p>
-        <select id="size${i}">${sizes}</select>
-        <input type="number" id="qty${i}" value="1" min="1">
-        <button onclick="addCart(${i})">Add to Cart</button>
-      </div>`;
+fetch('ferti.csv')
+  .then(res => res.text())
+  .then(text => {
+    const rows = text.trim().split('\n').slice(1);
+    rows.forEach(row => {
+      const [name,brand,category,size,price,image] = row.split(',');
+      addProduct({name,brand,category,size,price,image});
+    });
   });
+
+function addProduct(p){
+  const div = document.createElement('div');
+  div.className = 'card';
+  div.innerHTML = `
+    <img src="${p.image}">
+    <div class="card-body">
+      <h4>${p.name}</h4>
+      <small>${p.brand} | ${p.category}</small>
+      <select>
+        <option value="${p.price10}">10ml - ₹${p.price10}</option>
+        <option value="${p.price20}">20ml - ₹${p.price20}</option>
+        <option value="${p.price100}">100ml - ₹${p.price100}</option>
+      </select>
+      <button onclick="addToCart('${p.name}', this.previousElementSibling.value)">Add to Cart</button>
+    </div>`;
+  document.getElementById('products').appendChild(div);
 }
 
-function addCart(i){
-  const p=productsData[i];
-  const size=document.getElementById('size'+i).value;
-  const qty=parseInt(document.getElementById('qty'+i).value);
-  cart.push({name:p.name,brand:p.brand,size,qty,price:p.sizes[size]});
-  cartCount.textContent=cart.length;
-}
-function openCart(){
-  let total=0;cartItems.innerHTML='';
-  cart.forEach(c=>{const sub=c.qty*c.price;total+=sub;cartItems.innerHTML+=`<div class='cart-item'>${c.name} (${c.size}) × ${c.qty} = ₹${sub}</div>`});
-  cartTotal.textContent=`Total Amount: ₹${total}`;
-  cartModal.style.display='flex';
-}
-function closeCart(){cartModal.style.display='none'}
-function buyWhatsApp(){
-  let msg='Hello, I want to order:%0A';let total=0;
-  cart.forEach((c,i)=>{const sub=c.qty*c.price;total+=sub;msg+=`${i+1}. ${c.name} (${c.size}) Qty:${c.qty} Subtotal:₹${sub}%0A`});
-  msg+=`%0ATotal Products:${cart.length}%0ATotal Amount:₹${total}`;
-  window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
+function addToCart(name, price){
+  cart.push({name, price: Number(price)});
+  document.getElementById('cartItems').innerText = cart.length + ' items';
+  document.getElementById('cartTotal').innerText = '₹' + cart.reduce((s,i)=>s+i.price,0);
 }
 
-renderFilters();render();search.oninput=render;
+function checkout(){
+  let msg = 'Order Details:%0A';
+  let total = 0;
+  cart.forEach(i=>{ msg += i.name + ' - ₹' + i.price + '%0A'; total+=i.price; });
+  msg += 'Total: ₹'+total;
+  window.open('https://wa.me/919346827055?text='+msg);
+}
 </script>
 </body>
 </html>
