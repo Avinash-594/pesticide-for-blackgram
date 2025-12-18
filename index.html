@@ -1,179 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Avinash Pesticide Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-body{
-  margin:0;
-  font-family:Segoe UI, sans-serif;
-  background:#f4f8f4;
-  color:#1f2937;
-}
-header{
-  background:linear-gradient(120deg,#22c55e,#15803d);
-  color:white;
-  padding:70px 20px;
-  text-align:center;
-}
-header h1{font-size:3rem;}
-header p{font-size:1.2rem;opacity:.9}
-
-.filters{
-  display:flex;
-  gap:15px;
-  justify-content:center;
-  margin:30px;
-}
-select{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-
-.products{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-  padding:20px;
-}
-
-.card{
-  background:white;
-  border-radius:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
-  overflow:hidden;
-  transition:.4s;
-}
-.card:hover{
-  transform:translateY(-10px) scale(1.03);
-}
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:contain;
-  background:#f9fafb;
-}
-.card .info{
-  padding:15px;
-}
-.price{
-  font-size:1.4rem;
-  color:#16a34a;
-  font-weight:bold;
-}
-button{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border:none;
-  background:#25D366;
-  color:white;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:#555;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheAvinash Pesticide Store | Professional Agro-Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .sidebar-item:hover { transform: translateX(8px); transition: all 0.3s; }
+        .product-card:hover { transform: translateY(-10px) rotateX(2deg) rotateY(2deg); shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
+        .animate-slide { transition: all 1s ease-in-out; }
+    </style>
 </head>
+<body class="bg-gray-50 text-slate-900">
 
-<body>
-
-<header>
-  <h1>Avinash Pesticide Store</h1>
-  <p>Trusted Agro Products for Every Farmer 🌾</p>
-</header>
-
-<div class="filters">
-  <select id="brandFilter">
-    <option value="All">All Brands</option>
-  </select>
-
-  <select id="categoryFilter">
-    <option value="All">All Categories</option>
-  </select>
-</div>
-
-<div class="products" id="products"></div>
-
-<footer>
-  © 2025 Avinash Pesticide Store
-</footer>
-
-<script>
-let allData=[];
-
-fetch("products.csv?v="+Date.now())
-.then(r=>r.text())
-.then(text=>{
-  const rows=text.trim().split("\n").slice(1);
-  allData=rows.map(r=>{
-    const [brand,category,name,price,image]=r.split(",");
-    return {brand,category,name,price,image};
-  });
-  loadFilters();
-  render(allData);
-});
-
-function loadFilters(){
-  const brands=[...new Set(allData.map(p=>p.brand))];
-  const cats=[...new Set(allData.map(p=>p.category))];
-
-  brands.forEach(b=>{
-    brandFilter.innerHTML+=`<option>${b}</option>`;
-  });
-  cats.forEach(c=>{
-    categoryFilter.innerHTML+=`<option>${c}</option>`;
-  });
-}
-
-brandFilter.onchange=categoryFilter.onchange=()=>{
-  const b=brandFilter.value;
-  const c=categoryFilter.value;
-
-  render(allData.filter(p=>
-    (b==="All"||p.brand===b) &&
-    (c==="All"||p.category===c)
-  ));
-};
-
-function render(data){
-  products.innerHTML="";
-  data.forEach(p=>{
-    products.innerHTML+=`
-      <div class="card">
-        <img src="images/${p.image}">
-        <div class="info">
-          <h3>${p.name}</h3>
-          <small>${p.brand} • ${p.category}</small>
-          <div class="price">₹${p.price}</div>
-          <button onclick="order('${p.name}')">
-            <i class="fa-brands fa-whatsapp"></i> Order
-          </button>
+    <section class="relative h-[500px] w-full overflow-hidden bg-slate-900">
+        <div id="slider" class="h-full w-full relative">
+            <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000">
+                <div class="absolute inset-0 bg-black/40 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover">
+                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
+                    <h1 class="text-6xl font-black mb-4">TheAvinash Store</h1>
+                    <p class="text-2xl font-light italic">World-Class Pesticides for Every Indian Farmer</p>
+                </div>
+            </div>
         </div>
-      </div>`;
-  });
-}
+    </section>
 
-function order(name){
-  window.open(
-    "https://wa.me/91XXXXXXXXXX?text=I want to order "+name,
-    "_blank"
-  );
-}
-</script>
+    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-8 p-6">
+        
+        <aside class="w-full md:w-72 space-y-8">
+            <div class="glass p-6 rounded-[2rem] sticky top-6 shadow-xl">
+                <h2 class="text-xs font-black text-green-700 uppercase tracking-widest mb-4">Top Brands</h2>
+                <div class="space-y-2 flex flex-col" id="brand-filters">
+                    <button onclick="filterBy('brand', 'All')" class="sidebar-item text-left font-bold text-slate-700 hover:text-green-600">All Products</button>
+                    <button onclick="filterBy('brand', 'Syngenta')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Syngenta</button>
+                    <button onclick="filterBy('brand', 'Bayer')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Bayer</button>
+                    <button onclick="filterBy('brand', 'UPL')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">UPL</button>
+                    <button onclick="filterBy('brand', 'Indofil')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Indofil / Indolizer</button>
+                    <button onclick="filterBy('brand', 'FMC')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">FMC</button>
+                </div>
 
+                <h2 class="text-xs font-black text-green-700 uppercase tracking-widest mb-4 mt-8">Categories</h2>
+                <div class="space-y-2 flex flex-col" id="cat-filters">
+                    <button onclick="filterBy('category', 'Nutrient')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Nutrients</button>
+                    <button onclick="filterBy('category', 'Insecticide')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Insecticide</button>
+                    <button onclick="filterBy('category', 'Fungicide')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Fungicide</button>
+                    <button onclick="filterBy('category', 'Weed')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Weed Control</button>
+                    <button onclick="filterBy('category', 'Bangaruteega')" class="sidebar-item text-left font-bold text-red-600 hover:opacity-100">Bangaruteega Medicine</button>
+                    <button onclick="filterBy('category', 'Mosquito')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Mosquito Killer</button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1">
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                </div>
+        </main>
+    </div>
+
+    <div id="cart-drawer" class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleCart()" class="bg-green-600 text-white p-5 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-all">
+            <i data-lucide="shopping-cart"></i>
+            <span id="cart-count" class="font-bold text-lg">0</span>
+            <span class="font-bold border-l pl-3">₹<span id="cart-total">0</span></span>
+        </button>
+        <div id="cart-items" class="hidden glass absolute bottom-20 right-0 w-80 p-6 rounded-3xl shadow-2xl">
+            <h3 class="font-black text-xl mb-4">Your Cart</h3>
+            <div id="cart-list" class="max-h-60 overflow-y-auto space-y-3 mb-4"></div>
+            <button onclick="checkoutWhatsApp()" class="w-full bg-green-700 text-white py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-green-800 transition-colors">Buy on WhatsApp</button>
+        </div>
+    </div>
+
+    <div id="modal" class="hidden fixed inset-0 z-[60] bg-black/60 flex items-center justify-center p-6 backdrop-blur-sm">
+        <div class="glass max-w-2xl w-full p-10 rounded-[3rem] relative animate-pop">
+            <button onclick="closeModal()" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full"><i data-lucide="x"></i></button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        let allProducts = [];
+        let cart = [];
+
+        // 1. DATA LOADING
+        const sampleCSV = `id,name,brand,category,size,price,image,desc,usage
+1,Isabion,Syngenta,Nutrient,1L,1350,isabion.png,Growth & Protein booster.,Spray 400ml per acre at flowering.
+2,Alika,Syngenta,Insecticide,80ml,320,alika.png,Kills sucking pests.,Highly systemic treatment.
+3,Iris,UPL,Weed,500ml,800,iris.png,Selective herbicide.,Best for Black Gram weeds.
+4,Bangaruteega-Special,Bayer,Bangaruteega,1L,1200,bayer_b.png,Cuscuta killer.,Apply early morning for best results.
+5,Icon,Syngenta,Mosquito,500ml,1700,icon.png,Dengue prevention.,Indoor residual spray.`;
+
+        function init() {
+            Papa.parse(sampleCSV, {
+                header: true,
+                complete: (res) => {
+                    allProducts = res.data;
+                    renderProducts(allProducts);
+                }
+            });
+            lucide.createIcons();
+        }
+
+        // 2. RENDERING
+        function renderProducts(data) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = data.map(p => `
+                <div class="product-card glass rounded-[2.5rem] p-5 flex flex-col justify-between transition-all duration-300">
+                    <div class="bg-white/50 rounded-3xl h-44 mb-4 flex items-center justify-center cursor-pointer overflow-hidden" onclick="showDetails('${p.id}')">
+                        <img src="https://via.placeholder.com/150?text=${p.name}" class="h-32 object-contain hover:scale-110 transition-transform">
+                    </div>
+                    <div class="space-y-1 px-2">
+                        <p class="text-[10px] font-black text-green-600 uppercase tracking-tighter">${p.brand}</p>
+                        <h3 class="text-xl font-bold text-slate-800 truncate">${p.name}</h3>
+                        <p class="text-xs text-gray-400 font-bold">${p.size}</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-6 px-2">
+                        <span class="text-2xl font-black text-slate-800">₹${p.price}</span>
+                        <button onclick="addToCart('${p.id}')" class="bg-slate-900 text-white p-3 rounded-2xl hover:bg-green-600 transition-colors shadow-lg">
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // 3. FILTERING
+        function filterBy(type, value) {
+            if(value === 'All') renderProducts(allProducts);
+            else {
+                const filtered = allProducts.filter(p => p[type] === value);
+                renderProducts(filtered);
+            }
+        }
+
+        // 4. CART LOGIC
+        function addToCart(id) {
+            const product = allProducts.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
+            document.getElementById('cart-total').innerText = total;
+
+            const list = document.getElementById('cart-list');
+            list.innerHTML = cart.map((item, index) => `
+                <div class="flex justify-between items-center border-b border-white/30 pb-2">
+                    <span class="text-sm font-bold text-slate-700">${item.name}</span>
+                    <span class="text-sm font-black">₹${item.price}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-items').classList.toggle('hidden');
+        }
+
+        function checkoutWhatsApp() {
+            const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
+            const productNames = cart.map(p => `${p.name} (${p.size})`).join(', ');
+            const message = encodeURIComponent(`New Order from Avinash Store:\nItems: ${productNames}\nTotal Amount: ₹${total}`);
+            window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank');
+        }
+
+        // 5. MODAL LOGIC
+        function showDetails(id) {
+            const p = allProducts.find(prod => prod.id === id);
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <img src="https://via.placeholder.com/300?text=${p.name}" class="w-64 drop-shadow-2xl">
+                    <div class="space-y-4">
+                        <h2 class="text-4xl font-black">${p.name}</h2>
+                        <div class="flex gap-2">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">${p.brand}</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">${p.category}</span>
+                        </div>
+                        <p class="text-lg text-slate-600">${p.desc}</p>
+                        <div class="bg-green-50 p-6 rounded-3xl border border-green-100">
+                            <h4 class="font-black text-green-800 mb-2">HOW TO USE:</h4>
+                            <p class="text-sm text-green-700">${p.usage}</p>
+                        </div>
+                        <p class="text-3xl font-black">₹${p.price}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        // Start everything
+        init();
+    </script>
 </body>
 </html>
