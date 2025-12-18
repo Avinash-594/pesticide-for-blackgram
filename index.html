@@ -1,317 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Avinash Pesticide Store</title>
+<meta charset="UTF-8">
+<title>Avinash Pesticide Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-  <!-- Disable cache (important for GitHub Pages) -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+<!-- Slider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --dark:#0f172a;
+  --card:#111827;
+  --accent:#facc15;
+  --muted:#9ca3af;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family: "Segoe UI",sans-serif;
+  background:#020617;
+  color:white;
+}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f6f8;
-      color: #222;
-      line-height: 1.4;
-    }
+/* ---------- HERO ---------- */
+.hero{
+  height:100vh;
+  position:relative;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,.75),rgba(0,0,0,.35));
+  z-index:1;
+}
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    header {
-      background: linear-gradient(120deg, #1f7a4d, #2fa36b);
-      color: #fff;
-      padding: 25px;
-      text-align: center;
-    }
+/* ---------- HERO CONTENT ---------- */
+.hero-content{
+  position:absolute;
+  z-index:2;
+  top:50%;
+  left:8%;
+  transform:translateY(-50%);
+  max-width:600px;
+}
+.hero-content h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+.hero-content p{
+  color:var(--muted);
+  font-size:1.1rem;
+}
+.hero-content button{
+  margin-top:20px;
+  padding:14px 26px;
+  border:none;
+  background:var(--accent);
+  color:black;
+  font-weight:bold;
+  font-size:1rem;
+  border-radius:8px;
+  cursor:pointer;
+}
 
-    header h1 {
-      font-size: 28px;
-    }
+/* ---------- NAV ICONS ---------- */
+.nav-icons{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:35px;
+  z-index:2;
+}
+.nav-icons i{
+  font-size:1.6rem;
+  color:white;
+  opacity:.85;
+}
 
-    header p {
-      margin-top: 6px;
-      opacity: 0.9;
-    }
+/* ---------- MAIN LAYOUT ---------- */
+.main{
+  display:grid;
+  grid-template-columns:260px 1fr;
+}
 
-    .container {
-      display: flex;
-      min-height: calc(100vh - 120px);
-    }
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  background:#020617;
+  padding:25px;
+  border-right:1px solid #1f2933;
+}
+.sidebar h3{
+  margin:20px 0 10px;
+  color:var(--accent);
+}
+.sidebar div{
+  padding:8px 0;
+  color:#d1d5db;
+  cursor:pointer;
+}
 
-    aside {
-      width: 260px;
-      background: #ffffff;
-      border-right: 1px solid #ddd;
-      padding: 15px;
-    }
+/* ---------- TOP BAR ---------- */
+.topbar{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.search{
+  background:#020617;
+  border:1px solid #1f2933;
+  padding:12px 15px;
+  width:300px;
+  color:white;
+  border-radius:6px;
+}
 
-    main {
-      flex: 1;
-      padding: 20px;
-    }
+/* ---------- PRODUCTS ---------- */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:22px;
+  padding:20px;
+}
+.card{
+  background:linear-gradient(145deg,#020617,#020617);
+  border:1px solid #1f2933;
+  border-radius:14px;
+  overflow:hidden;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.card .info{
+  padding:15px;
+}
+.card h4{font-size:1.05rem}
+.card small{color:var(--muted)}
+.price{
+  margin:10px 0;
+  color:var(--accent);
+  font-weight:bold;
+}
+.card button{
+  width:100%;
+  padding:10px;
+  background:var(--accent);
+  border:none;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .search {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-    }
-
-    .side-title {
-      font-weight: 600;
-      margin: 15px 0 8px;
-      color: #1f7a4d;
-    }
-
-    .side-item {
-      padding: 8px;
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .side-item:hover {
-      background: #eef4f1;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      background: #fafafa;
-      padding: 10px;
-    }
-
-    .card-body {
-      padding: 12px;
-    }
-
-    .card-body h4 {
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
-
-    .meta {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 8px;
-    }
-
-    select {
-      width: 100%;
-      padding: 6px;
-      margin-bottom: 8px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background: #1f7a4d;
-      color: white;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    button:hover {
-      background: #155c3a;
-    }
-
-    .cart-bar {
-      position: fixed;
-      bottom: 0;
-      left: 260px;
-      right: 0;
-      background: #ffffff;
-      border-top: 1px solid #ccc;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    @media(max-width: 768px) {
-      aside {
-        display: none;
-      }
-      .cart-bar {
-        left: 0;
-      }
-    }
-  </style>
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:25px;
+  color:#9ca3af;
+  border-top:1px solid #1f2933;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>🌾 Welcome to Avinash Pesticide Store</h1>
-  <p>All Brands • All Categories • Bulk Orders on WhatsApp</p>
-</header>
+<!-- ===== HERO SLIDER ===== -->
+<div class="hero swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="background.jpg">
+    </div>
+    <div class="swiper-slide">
+      <img src="background2.jpg">
+    </div>
+  </div>
 
-<div class="container">
+  <div class="hero-content">
+    <h1>Welcome to Avinash Pesticide Store</h1>
+    <p>Trusted pesticides, nutrients & crop protection products for farmers</p>
+    <button onclick="document.getElementById('shop').scrollIntoView()">Explore Products</button>
+  </div>
 
-  <aside>
-    <input class="search" placeholder="Search product..." onkeyup="searchProduct(this.value)">
+  <div class="nav-icons">
+    <i class="fa-solid fa-house"></i>
+    <i class="fa-solid fa-seedling"></i>
+    <i class="fa-solid fa-cart-shopping"></i>
+    <i class="fa-solid fa-phone"></i>
+  </div>
+</div>
 
-    <div class="side-title">Brands</div>
-    <div id="brandList"></div>
+<!-- ===== MAIN ===== -->
+<div class="main" id="shop">
 
-    <div class="side-title">Categories</div>
-    <div id="categoryList"></div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Brands</h3>
+    <div>Syngenta</div>
+    <div>Indofil</div>
+    <div>Tata Gold</div>
+    <div>UPL</div>
+
+    <h3>Categories</h3>
+    <div>Insecticide</div>
+    <div>Fungicide</div>
+    <div>Nutrients</div>
+    <div>Mosquito Killer</div>
+    <div>Weed Killer</div>
   </aside>
 
-  <main>
-    <div class="grid" id="productGrid"></div>
-  </main>
+  <!-- CONTENT -->
+  <section>
+    <div class="topbar">
+      <h2>Products</h2>
+      <input class="search" placeholder="Search pesticides...">
+    </div>
 
-</div>
-
-<div class="cart-bar">
-  <strong id="cartInfo">0 items | ₹0</strong>
-  <button onclick="checkout()">Buy on WhatsApp</button>
-</div>
-
-<script>
-let products = [];
-let cart = [];
-let activeBrand = "";
-let activeCategory = "";
-
-/* LOAD CSV */
-fetch("ferti.csv?v=" + new Date().getTime())
-  .then(res => res.text())
-  .then(text => {
-    const rows = text.trim().split("\n").slice(1);
-    products = rows.map(r => {
-      const c = r.split(",");
-      return {
-        name: c[0],
-        brand: c[1],
-        category: c[2],
-        image: c[3],
-        sizes: {
-          "10ml": c[4],
-          "50ml": c[5],
-          "100ml": c[6],
-          "250ml": c[7]
-        }
-      };
-    });
-    renderSidebar();
-    renderProducts(products);
-  });
-
-function renderSidebar() {
-  const brands = [...new Set(products.map(p => p.brand))];
-  const cats = [...new Set(products.map(p => p.category))];
-
-  brandList.innerHTML = brands.map(b =>
-    `<div class="side-item" onclick="filterBrand('${b}')">${b}</div>`
-  ).join("");
-
-  categoryList.innerHTML = cats.map(c =>
-    `<div class="side-item" onclick="filterCategory('${c}')">${c}</div>`
-  ).join("");
-}
-
-function filterBrand(b) {
-  activeBrand = b;
-  applyFilter();
-}
-
-function filterCategory(c) {
-  activeCategory = c;
-  applyFilter();
-}
-
-function applyFilter() {
-  let list = products;
-  if (activeBrand) list = list.filter(p => p.brand === activeBrand);
-  if (activeCategory) list = list.filter(p => p.category === activeCategory);
-  renderProducts(list);
-}
-
-function searchProduct(q) {
-  renderProducts(products.filter(p =>
-    p.name.toLowerCase().includes(q.toLowerCase())
-  ));
-}
-
-function renderProducts(list) {
-  productGrid.innerHTML = list.map((p, i) => {
-    const options = Object.entries(p.sizes)
-      .filter(s => s[1])
-      .map(s => `<option value="${s[1]}">${s[0]} - ₹${s[1]}</option>`)
-      .join("");
-
-    return `
+    <div class="products">
       <div class="card">
-        <img src="images/${p.image}">
-        <div class="card-body">
-          <h4>${p.name}</h4>
-          <div class="meta">${p.brand} | ${p.category}</div>
-          <select id="size${i}">${options}</select>
-          <button onclick="addCart('${p.name}', document.getElementById('size${i}').value)">
-            Add to Cart
-          </button>
+        <img src="images/actara.jpg">
+        <div class="info">
+          <h4>Actara</h4>
+          <small>Syngenta • Insecticide</small>
+          <div class="price">₹450 / 100ml</div>
+          <button onclick="buy()">Buy on WhatsApp</button>
         </div>
       </div>
-    `;
-  }).join("");
-}
+    </div>
+  </section>
+</div>
 
-function addCart(name, price) {
-  cart.push({ name, price: Number(price) });
-  updateCart();
-}
+<footer>
+© 2025 Avinash Pesticide Store • Farmer First
+</footer>
 
-function updateCart() {
-  const total = cart.reduce((s, i) => s + i.price, 0);
-  cartInfo.innerText = `${cart.length} items | ₹${total}`;
-}
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+new Swiper(".swiper",{
+  loop:true,
+  autoplay:{delay:3500},
+  effect:"fade"
+});
 
-function checkout() {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
-  let msg = "Order from Avinash Pesticide Store:%0A";
-  cart.forEach(c => msg += `${c.name} - ₹${c.price}%0A`);
-  msg += `Total: ₹${cart.reduce((s, i) => s + i.price, 0)}`;
-
-  window.open("https://wa.me/91XXXXXXXXXX?text=" + msg, "_blank");
+function buy(){
+  const msg = encodeURIComponent(
+    "Hello Avinash Pesticide Store,%0AProduct: Actara%0AQty: 100ml%0APrice: ₹450"
+  );
+  window.open("https://wa.me/91XXXXXXXXXX?text="+msg,"_blank");
 }
 </script>
 
