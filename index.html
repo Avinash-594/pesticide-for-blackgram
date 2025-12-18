@@ -210,7 +210,7 @@ let activeBrand = "";
 let activeCategory = "";
 
 /* LOAD CSV */
-fetch("products.csv?v=" + new Date().getTime())
+fetch("ferti.csv?v=" + new Date().getTime())
   .then(res => res.text())
   .then(text => {
     const rows = text.trim().split("\n").slice(1);
