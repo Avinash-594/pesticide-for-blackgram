@@ -155,27 +155,21 @@
     var swiper = new Swiper(".mySwiper", { speed: 1000, autoplay: { delay: 5000 }, effect: 'fade' });
 
     // FIX: Wrapped in backticks so multi-line CSV works correctly
-    const csvData = `id,name,brand,category,size,price,crop,usage,dosage_per_acre,image
-1,Isabion,Syngenta,Nutrient,500ml,780,Black Gram,Mix 40ml in 15L water tank. Spray during flowering.,500ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Isabion_Bottle_0.png
-2,Alika,Syngenta,Insecticide,80ml,320,Black Gram,Mix 8ml in 15L water tank. Kills whitefly & aphids.,80ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/alika_500ml_bottle_pack_front.png
-3,Amistar Top,Syngenta,Fungicide,200ml,980,All Crops,Mix 20ml in 15L water tank. Prevents leaf rust.,200ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/amistar_top_bottle_pack_front_0.png
-4,Iris,UPL,Weed,400ml,680,Black Gram,Spray on wet soil 15-20 days after sowing. Kills all weeds.,400ml per acre,https://m.media-amazon.com/images/I/41-W6vD1UaL.jpg
-5,Coragen,FMC,Insecticide,60ml,940,Black Gram,Mix 6ml per 15L tank. Best for Pod Borer (worm).,60ml per acre,https://m.media-amazon.com/images/I/51p1I8f21+L._SL1000_.jpg
-6,Nativo,Bayer,Fungicide,100g,820,Black Gram,Mix 10g in 15L water. Best for leaf spots.,100g per acre,https://m.media-amazon.com/images/I/61NfT7yMvDL._SL1100_.jpg
-7,Belt Expert,Bayer,Insecticide,100ml,890,Black Gram,Mix 10ml in 15L water. Strong caterpillar control.,100ml per acre,https://m.media-amazon.com/images/I/51f98V7z+2L.jpg
-8,Targa Super,Dhanuka,Weed,500ml,720,Black Gram,Mix 40ml in 15L tank. Kills narrow-leaf grass.,500ml per acre,https://m.media-amazon.com/images/I/61YFp6YxPzL._SL1000_.jpg
-9,Benevia,FMC,Insecticide,240ml,1750,Chilli/Veg,Mix 30ml in 15L water. Premium Thrips control.,240ml per acre,https://m.media-amazon.com/images/I/51Gj6-Y-FpL._SL1000_.jpg
-10,Saaf,UPL,Fungicide,250g,280,All Crops,Mix 30g in 15L water. General fungal protection.,250g - 500g per acre,https://m.media-amazon.com/images/I/71Y87t1XQ9L._SL1100_.jpg
-11,Confidor,Bayer,Insecticide,100ml,480,Vegetables,Mix 10ml in 15L tank. Stops whitefly & Jassids.,100ml per acre,https://m.media-amazon.com/images/I/61X-uWzYkPL._SL1000_.jpg
-12,Solomon,Bayer,Insecticide,250ml,890,Soybean/Gram,Mix 15ml in 15L tank. Stops flower drop & pests.,250ml per acre,https://m.media-amazon.com/images/I/61rU86Y03OL._SL1000_.jpg
-13,Lancer Gold,UPL,Insecticide,500g,650,Cotton/Pulses,Mix 40g in 15L tank. Systemic & contact killer.,400g - 500g per acre,https://m.media-amazon.com/images/I/71P7A03k6-L._SL1500_.jpg
-14,Lannate,FMC,Insecticide,250g,680,Tobacco/Veg,Mix 40g in 15L tank. Fast action on caterpillars.,400g per acre,https://m.media-amazon.com/images/I/41Nn+4EaLPL.jpg
-15,Maton,Syngenta,Weed,500ml,920,Black Gram,Mix 50ml in 15L tank. Strong broadleaf herbicide.,500ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Maton_Bottle_Front_0.png
-16,Fusilade,Syngenta,Weed,250ml,580,Black Gram,Mix 25ml in 15L tank. Kills narrow-leaf grass.,250ml - 400ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/fusilade_forte_bottle_pack_front.png
-17,Quantis,Syngenta,Nutrient,1L,1150,All Crops,Mix 50ml in 15L tank. Protects crop from heat stress.,1L per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/20/syngenta_quantis_1l_bottle_front_lowres.png
-18,Emanate,Dhanuka,Fungicide,250g,520,Fruit/Grapes,Mix 30g in 15L tank. Stops fruit rot & mildew.,250g per acre,https://m.media-amazon.com/images/I/61zC8P0n8dL._SL1000_.jpg
-19,K-Othrine,Bayer,Mosquito,1L,2350,Home,Mix 10ml per 1L water for floor/wall spray.,Residual spray for home.,https://m.media-amazon.com/images/I/61S5Xm95V7L._SL1500_.jpg
-20,Icon 10CS,Syngenta,Insecticide,500ml,1750,Home,Capsule suspension for mosquitoes.,100ml in 10L water.,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Icon_10CS_Bottle_Front.png`;
+    const csvData = `id,name,brand,category,size,price,usage,dosage_per_acre,image
+1,Isabion,Syngenta,Nutrient,500ml,780,"Mix 40ml/15L tank (12 tanks/acre). Apply 30-35 days after sowing (flowering). Can mix with Alika or Amistar. DO NOT mix with herbicides.",500ml per acre,images/syngenta/isobian.jpg
+2,Alika,Syngenta,Insecticide,80ml,320,"Mix 8ml/15L tank (10 tanks/acre). Apply 20-25 days after sowing for sucking pests. Safe to mix with Isabion/Fungicides.",80ml per acre,images/syngenta/Alika.jpg
+3,Amistar Top,Syngenta,Fungicide,200ml,980,"Mix 20ml/15L tank (10 tanks/acre). Apply 40 days after sowing for leaf spots. Can mix with Alika. Avoid mixing with heavy herbicides.",200ml per acre,images/syngenta/Amistar top.jpg
+4,Quantis,Syngenta,Nutrient,1L,1150,"Mix 60ml/15L tank (16 tanks/acre). Apply 45 days after sowing for heat stress. Safe with most Insecticides. Safe with Alika.",1L per acre,images/syngenta/quantis.jpg
+5,Ampligo,Syngenta,Insecticide,100ml,850,"Mix 10ml/15L tank (10 tanks/acre). Apply 30 days after sowing for pod borer. Can mix with nutrients. DO NOT mix with herbicides.",100ml per acre,images/syngenta/Ampligo.jpg
+6,Actara,Syngenta,Insecticide,100g,450,"Mix 10g/15L tank (10 tanks/acre). Apply 15-20 days after sowing. Safe with Nutrients. Can mix with Icon 10CS.",100g per acre,images/syngenta/actara.jpg
+7,Score,Syngenta,Fungicide,250ml,950,"Mix 15ml/15L tank (15 tanks/acre). Apply 50 days after sowing. Safe with Insecticides. Avoid mixing with strong Weedicides.",250ml per acre,images/syngenta/score.jpg
+8,Icon 10CS,Syngenta,Mosquito,500ml,1750,"Mix 20ml/15L tank for crops. Apply anytime for pests. Can mix with Actara. DO NOT mix with Growth Promoters (Isabion).",100ml in 10L water,images/syngenta/icon-10cs.jpg
+9,Ridomil Gold,Syngenta,Fungicide,250g,650,"Mix 25g/15L tank (10 tanks/acre). Apply 15 days after sowing. Safe with most insecticides. DO NOT mix with herbicides.",250g per acre,images/syngenta/Ridomil.jpg
+10,Fusiflex,Syngenta,Weed,500ml,850,"Mix 50ml/15L tank (10 tanks/acre). Apply 15-20 days after sowing on wet soil. SPRAY ALONE. DO NOT mix with anything.",500ml per acre,images/syngenta/fusiflex.jpg
+11,Cultar,Syngenta,Nutrient,100ml,450,"Mix 10ml/15L tank (10 tanks/acre). Used for growth regulation. Apply 40 days after sowing. Avoid mixing with herbicides.",100ml per acre,images/syngenta/Cultar.jpg
+12,Rifit,Syngenta,Weed,500ml,550,"Apply 500ml per acre within 3 days of sowing. Pre-emergence. DO NOT mix with any other chemical.",500ml per acre,images/syngenta/rifit.jpg
+13,Simodis,Syngenta,Insecticide,80ml,1100,"Mix 8ml/15L tank (10 tanks/acre). High-end protection for Thrips/Mites. Apply 25-30 days after sowing. Safe with Nutrients.",80ml per acre,images/syngenta/Simodis.jpg
+14,Demand,Syngenta,Insecticide,500ml,1450,"Mix 20ml/15L tank. General pest control. Can mix with Fungicides. Avoid mixing with Isabion/Growth Promoters.",200ml per acre,images/syngenta/Demand.jpg
     function initStore() {
         Papa.parse(csvData, {
             header: true, 
