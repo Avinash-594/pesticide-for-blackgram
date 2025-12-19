@@ -3,204 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheAvinash Pesticide Store | Professional Agro-Tech</title>
+    <title>Welcome To Avinash Pesticide Store | Premium Agro-Tech</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); }
-        .sidebar-item:hover { transform: translateX(8px); transition: all 0.3s; }
-        .product-card:hover { transform: translateY(-10px) rotateX(2deg) rotateY(2deg); shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
-        .animate-slide { transition: all 1s ease-in-out; }
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+
+        /* Background Video Control */
+        #video-bg {
+            position: fixed;
+            right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
+            z-index: -10;
+            object-fit: cover;
+            filter: brightness(0.6); /* Medium Dimming */
+        }
+        
+        #bg-overlay {
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0, 0, 0, 0.5); /* Darker overlay for better text contrast */
+            z-index: -5; 
+            backdrop-filter: blur(8px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card { transition: all 0.4s ease; background: white; border-radius: 2.5rem; }
+        .product-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+        /* Animation Classes */
+        .swiper-slide .animate-text { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .swiper-slide-active .animate-text { opacity: 1; transform: translateY(0); }
+        .delay-200 { transition-delay: 0.4s; }
+        .delay-400 { transition-delay: 0.4s; }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900">
+<body class="text-slate-900">
 
-    <section class="relative h-[500px] w-full overflow-hidden bg-slate-900">
-        <div id="slider" class="h-full w-full relative">
-            <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000">
-                <div class="absolute inset-0 bg-black/40 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?auto=format&fit=crop&q=80&w=1600" class="w-full h-full object-cover">
-                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
-                    <h1 class="text-6xl font-black mb-4">TheAvinash Store</h1>
-                    <p class="text-2xl font-light italic">World-Class Pesticides for Every Indian Farmer</p>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-view-of-a-wheat-field-on-a-summer-afternoon-42362-large.mp4" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
+
+    <section class="h-screen w-full relative">
+        <div class="swiper mySwiper h-full w-full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1920" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                    <div class="relative z-10 text-center space-y-6 max-w-4xl px-4">
+                        <h1 class="animate-text text-7xl font-black tracking-tighter bg-gradient-to-r from-green-400 to-emerald-200 bg-clip-text text-transparent">Welcome To Avinash Pesticide Store</h1>
+                        <p class="animate-text delay-200 text-3xl font-medium text-white/90">India's Most Trusted Digital Partner for High-Yield Farming.</p>
+                        <div class="animate-text delay-400 pt-8">
+                             <a href="#shop-section" class="bg-green-600 hover:bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-all">Explore Branded Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?q=80&w=1920" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                    <div class="relative z-10 text-center space-y-6 max-w-4xl px-4">
+                        <h2 class="animate-text text-6xl font-black text-white">100% Original Brands</h2>
+                        <p class="animate-text delay-200 text-2xl text-white/90 font-medium">Directly sourced from Syngenta, Bayer, and UPL.</p>
+                    </div>
                 </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
-    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-8 p-6">
-        
-        <aside class="w-full md:w-72 space-y-8">
-            <div class="glass p-6 rounded-[2rem] sticky top-6 shadow-xl">
-                <h2 class="text-xs font-black text-green-700 uppercase tracking-widest mb-4">Top Brands</h2>
-                <div class="space-y-2 flex flex-col" id="brand-filters">
-                    <button onclick="filterBy('brand', 'All')" class="sidebar-item text-left font-bold text-slate-700 hover:text-green-600">All Products</button>
-                    <button onclick="filterBy('brand', 'Syngenta')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Syngenta</button>
-                    <button onclick="filterBy('brand', 'Bayer')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Bayer</button>
-                    <button onclick="filterBy('brand', 'UPL')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">UPL</button>
-                    <button onclick="filterBy('brand', 'Indofil')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Indofil / Indolizer</button>
-                    <button onclick="filterBy('brand', 'FMC')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">FMC</button>
+    <div id="shop-section" class="bg-slate-100/95 min-h-screen w-full relative z-10">
+        <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-10 p-8 py-24">
+            
+            <aside class="w-full md:w-80 space-y-8">
+                <div class="glass-panel p-8 rounded-[2.5rem] sticky top-8 text-slate-800">
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="filter" class="text-green-600"></i>
+                        <h2 class="text-xl font-black uppercase tracking-widest">Smart Filters</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                             <h3 class="text-sm font-bold text-green-600 uppercase mb-3">By Trusted Brand</h3>
+                             <div class="flex flex-wrap gap-2" id="brand-filters"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-green-600 uppercase mb-3 mt-6">By Problem Category</h3>
+                            <div class="space-y-2 flex flex-col" id="cat-filters">
+                                <button onclick="filterBy('category', 'All')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-semibold transition-all">All Categories</button>
+                                <button onclick="filterBy('category', 'Nutrient')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Nutrients (Growth)</button>
+                                <button onclick="filterBy('category', 'Insecticide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Insecticide (Kills Insects)</button>
+                                <button onclick="filterBy('category', 'Fungicide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Fungicide (Disease)</button>
+                                <button onclick="filterBy('category', 'Weed')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Weed Control</button>
+                                <button onclick="filterBy('category', 'Bangaruteega')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Bangaruteega control</button>
+                                <button onclick="filterBy('category', 'Mosquito')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium opacity-80 hover:opacity-100 transition-all">Mosquito Killer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </aside>
 
-                <h2 class="text-xs font-black text-green-700 uppercase tracking-widest mb-4 mt-8">Categories</h2>
-                <div class="space-y-2 flex flex-col" id="cat-filters">
-                    <button onclick="filterBy('category', 'Nutrient')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Nutrients</button>
-                    <button onclick="filterBy('category', 'Insecticide')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Insecticide</button>
-                    <button onclick="filterBy('category', 'Fungicide')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Fungicide</button>
-                    <button onclick="filterBy('category', 'Weed')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Weed Control</button>
-                    <button onclick="filterBy('category', 'Bangaruteega')" class="sidebar-item text-left font-bold text-red-600 hover:opacity-100">Bangaruteega Medicine</button>
-                    <button onclick="filterBy('category', 'Mosquito')" class="sidebar-item text-left font-semibold opacity-70 hover:opacity-100">Mosquito Killer</button>
+            <main class="flex-1">
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                    <p class="text-slate-500 text-xl col-span-full text-center">Loading professional products...</p>
                 </div>
-            </div>
-        </aside>
-
-        <main class="flex-1">
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                </div>
-        </main>
-    </div>
-
-    <div id="cart-drawer" class="fixed bottom-6 right-6 z-50">
-        <button onclick="toggleCart()" class="bg-green-600 text-white p-5 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-all">
-            <i data-lucide="shopping-cart"></i>
-            <span id="cart-count" class="font-bold text-lg">0</span>
-            <span class="font-bold border-l pl-3">₹<span id="cart-total">0</span></span>
-        </button>
-        <div id="cart-items" class="hidden glass absolute bottom-20 right-0 w-80 p-6 rounded-3xl shadow-2xl">
-            <h3 class="font-black text-xl mb-4">Your Cart</h3>
-            <div id="cart-list" class="max-h-60 overflow-y-auto space-y-3 mb-4"></div>
-            <button onclick="checkoutWhatsApp()" class="w-full bg-green-700 text-white py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-green-800 transition-colors">Buy on WhatsApp</button>
+            </main>
         </div>
     </div>
 
-    <div id="modal" class="hidden fixed inset-0 z-[60] bg-black/60 flex items-center justify-center p-6 backdrop-blur-sm">
-        <div class="glass max-w-2xl w-full p-10 rounded-[3rem] relative animate-pop">
-            <button onclick="closeModal()" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full"><i data-lucide="x"></i></button>
+    <div id="cart-drawer" class="fixed bottom-8 right-8 z-50">
+        <button onclick="toggleCart()" class="bg-green-600 hover:bg-green-500 text-white p-4 pr-6 rounded-full shadow-2xl flex items-center gap-4 border-2 border-green-400">
+            <div class="relative">
+                 <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+                 <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">0</span>
+            </div>
+            <span class="font-black text-2xl">₹<span id="final-total">0</span></span>
+        </button>
+        <div id="cart-items" class="hidden glass-panel absolute bottom-24 right-0 w-96 p-8 rounded-[2.5rem] text-slate-900 animate-slide-up">
+            <h3 class="font-black text-2xl mb-6 flex justify-between items-center">Your Cart <i data-lucide="shopping-bag" class="text-green-600"></i></h3>
+            <div id="cart-list" class="max-h-[40vh] overflow-y-auto space-y-4 mb-8"></div>
+            <div class="border-t pt-4 mb-6 flex justify-between items-center">
+                <span class="opacity-70 font-bold">Total:</span>
+                <span class="text-2xl font-black text-green-600">₹<span id="cart-total-display">0</span></span>
+            </div>
+            <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg">Confirm on WhatsApp</button>
+        </div>
+    </div>
+
+    <div id="modal" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white max-w-3xl w-full p-10 rounded-[3rem] relative">
+             <button onclick="closeModal()" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full"><i data-lucide="x"></i></button>
             <div id="modal-content"></div>
         </div>
     </div>
 
     <script>
-        let allProducts = [];
-        let cart = [];
+    let allProducts = [];
+    let cart = {}; 
 
-        // 1. DATA LOADING
-        const sampleCSV = `id,name,brand,category,size,price,image,desc,usage
-1,Isabion,Syngenta,Nutrient,1L,1350,isabion.png,Growth & Protein booster.,Spray 400ml per acre at flowering.
-2,Alika,Syngenta,Insecticide,80ml,320,alika.png,Kills sucking pests.,Highly systemic treatment.
-3,Iris,UPL,Weed,500ml,800,iris.png,Selective herbicide.,Best for Black Gram weeds.
-4,Bangaruteega-Special,Bayer,Bangaruteega,1L,1200,bayer_b.png,Cuscuta killer.,Apply early morning for best results.
-5,Icon,Syngenta,Mosquito,500ml,1700,icon.png,Dengue prevention.,Indoor residual spray.`;
+    lucide.createIcons();
+    var swiper = new Swiper(".mySwiper", { speed: 1000, autoplay: { delay: 5000 }, effect: 'fade' });
 
-        function init() {
-            Papa.parse(sampleCSV, {
-                header: true,
-                complete: (res) => {
-                    allProducts = res.data;
-                    renderProducts(allProducts);
-                }
-            });
-            lucide.createIcons();
-        }
-
-        // 2. RENDERING
-        function renderProducts(data) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = data.map(p => `
-                <div class="product-card glass rounded-[2.5rem] p-5 flex flex-col justify-between transition-all duration-300">
-                    <div class="bg-white/50 rounded-3xl h-44 mb-4 flex items-center justify-center cursor-pointer overflow-hidden" onclick="showDetails('${p.id}')">
-                        <img src="https://via.placeholder.com/150?text=${p.name}" class="h-32 object-contain hover:scale-110 transition-transform">
-                    </div>
-                    <div class="space-y-1 px-2">
-                        <p class="text-[10px] font-black text-green-600 uppercase tracking-tighter">${p.brand}</p>
-                        <h3 class="text-xl font-bold text-slate-800 truncate">${p.name}</h3>
-                        <p class="text-xs text-gray-400 font-bold">${p.size}</p>
-                    </div>
-                    <div class="flex justify-between items-center mt-6 px-2">
-                        <span class="text-2xl font-black text-slate-800">₹${p.price}</span>
-                        <button onclick="addToCart('${p.id}')" class="bg-slate-900 text-white p-3 rounded-2xl hover:bg-green-600 transition-colors shadow-lg">
-                            <i data-lucide="plus"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        // 3. FILTERING
-        function filterBy(type, value) {
-            if(value === 'All') renderProducts(allProducts);
-            else {
-                const filtered = allProducts.filter(p => p[type] === value);
-                renderProducts(filtered);
+    // FIX: Wrapped in backticks so multi-line CSV works correctly
+    const csvData = `id,name,brand,category,size,price,crop,usage,dosage_per_acre,image
+1,Isabion,Syngenta,Nutrient,500ml,780,Black Gram,Mix 40ml in 15L water tank. Spray during flowering.,500ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Isabion_Bottle_0.png
+2,Alika,Syngenta,Insecticide,80ml,320,Black Gram,Mix 8ml in 15L water tank. Kills whitefly & aphids.,80ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/alika_500ml_bottle_pack_front.png
+3,Amistar Top,Syngenta,Fungicide,200ml,980,All Crops,Mix 20ml in 15L water tank. Prevents leaf rust.,200ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/amistar_top_bottle_pack_front_0.png
+4,Iris,UPL,Weed,400ml,680,Black Gram,Spray on wet soil 15-20 days after sowing. Kills all weeds.,400ml per acre,https://m.media-amazon.com/images/I/41-W6vD1UaL.jpg
+5,Coragen,FMC,Insecticide,60ml,940,Black Gram,Mix 6ml per 15L tank. Best for Pod Borer (worm).,60ml per acre,https://m.media-amazon.com/images/I/51p1I8f21+L._SL1000_.jpg
+6,Nativo,Bayer,Fungicide,100g,820,Black Gram,Mix 10g in 15L water. Best for leaf spots.,100g per acre,https://m.media-amazon.com/images/I/61NfT7yMvDL._SL1100_.jpg
+7,Belt Expert,Bayer,Insecticide,100ml,890,Black Gram,Mix 10ml in 15L water. Strong caterpillar control.,100ml per acre,https://m.media-amazon.com/images/I/51f98V7z+2L.jpg
+8,Targa Super,Dhanuka,Weed,500ml,720,Black Gram,Mix 40ml in 15L tank. Kills narrow-leaf grass.,500ml per acre,https://m.media-amazon.com/images/I/61YFp6YxPzL._SL1000_.jpg
+9,Benevia,FMC,Insecticide,240ml,1750,Chilli/Veg,Mix 30ml in 15L water. Premium Thrips control.,240ml per acre,https://m.media-amazon.com/images/I/51Gj6-Y-FpL._SL1000_.jpg
+10,Saaf,UPL,Fungicide,250g,280,All Crops,Mix 30g in 15L water. General fungal protection.,250g - 500g per acre,https://m.media-amazon.com/images/I/71Y87t1XQ9L._SL1100_.jpg
+11,Confidor,Bayer,Insecticide,100ml,480,Vegetables,Mix 10ml in 15L tank. Stops whitefly & Jassids.,100ml per acre,https://m.media-amazon.com/images/I/61X-uWzYkPL._SL1000_.jpg
+12,Solomon,Bayer,Insecticide,250ml,890,Soybean/Gram,Mix 15ml in 15L tank. Stops flower drop & pests.,250ml per acre,https://m.media-amazon.com/images/I/61rU86Y03OL._SL1000_.jpg
+13,Lancer Gold,UPL,Insecticide,500g,650,Cotton/Pulses,Mix 40g in 15L tank. Systemic & contact killer.,400g - 500g per acre,https://m.media-amazon.com/images/I/71P7A03k6-L._SL1500_.jpg
+14,Lannate,FMC,Insecticide,250g,680,Tobacco/Veg,Mix 40g in 15L tank. Fast action on caterpillars.,400g per acre,https://m.media-amazon.com/images/I/41Nn+4EaLPL.jpg
+15,Maton,Syngenta,Weed,500ml,920,Black Gram,Mix 50ml in 15L tank. Strong broadleaf herbicide.,500ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Maton_Bottle_Front_0.png
+16,Fusilade,Syngenta,Weed,250ml,580,Black Gram,Mix 25ml in 15L tank. Kills narrow-leaf grass.,250ml - 400ml per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/16/fusilade_forte_bottle_pack_front.png
+17,Quantis,Syngenta,Nutrient,1L,1150,All Crops,Mix 50ml in 15L tank. Protects crop from heat stress.,1L per acre,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/image/2021/04/20/syngenta_quantis_1l_bottle_front_lowres.png
+18,Emanate,Dhanuka,Fungicide,250g,520,Fruit/Grapes,Mix 30g in 15L tank. Stops fruit rot & mildew.,250g per acre,https://m.media-amazon.com/images/I/61zC8P0n8dL._SL1000_.jpg
+19,K-Othrine,Bayer,Mosquito,1L,2350,Home,Mix 10ml per 1L water for floor/wall spray.,Residual spray for home.,https://m.media-amazon.com/images/I/61S5Xm95V7L._SL1500_.jpg
+20,Icon 10CS,Syngenta,Insecticide,500ml,1750,Home,Capsule suspension for mosquitoes.,100ml in 10L water.,https://www.syngenta.co.in/sites/g/files/zhg421/f/styles/syngenta_product_detail/public/product/Icon_10CS_Bottle_Front.png`;
+    function initStore() {
+        Papa.parse(csvData, {
+            header: true, 
+            skipEmptyLines: true,
+            complete: (res) => {
+                allProducts = res.data;
+                populateBrands(allProducts);
+                renderProducts(allProducts);
             }
+        });
+    }
+
+    function populateBrands(data) {
+        const brands = [...new Set(data.map(p => p.brand))];
+        const container = document.getElementById('brand-filters');
+        container.innerHTML = `<button onclick="filterBy('brand', 'All')" class="px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold shadow-lg">All</button>`;
+        brands.forEach(brand => {
+            container.innerHTML += `<button onclick="filterBy('brand', '${brand}')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl text-sm font-semibold transition-all">${brand}</button>`;
+        });
+    }
+
+    function renderProducts(data) {
+        const grid = document.getElementById('product-grid');
+        if(data.length === 0) {
+            grid.innerHTML = '<p class="text-slate-500 text-xl col-span-full text-center">No products found.</p>';
+            return;
         }
-
-        // 4. CART LOGIC
-        function addToCart(id) {
-            const product = allProducts.find(p => p.id === id);
-            cart.push(product);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
-            document.getElementById('cart-total').innerText = total;
-
-            const list = document.getElementById('cart-list');
-            list.innerHTML = cart.map((item, index) => `
-                <div class="flex justify-between items-center border-b border-white/30 pb-2">
-                    <span class="text-sm font-bold text-slate-700">${item.name}</span>
-                    <span class="text-sm font-black">₹${item.price}</span>
+        grid.innerHTML = data.map(p => `
+            <div class="product-card rounded-[2.5rem] p-5 flex flex-col justify-between shadow-sm border border-slate-200">
+                <div class="bg-slate-50 rounded-3xl h-52 mb-5 flex items-center justify-center cursor-pointer relative overflow-hidden" onclick="showDetails('${p.id}')">
+                     <img src="${p.image}" 
+     alt="${p.name}" 
+     class="h-40 w-full object-contain mix-blend-multiply transition-all duration-500 hover:scale-110" 
+     onerror="this.onerror=null;this.src='https://placehold.co/400x400/f8fafc/1e293b?text=Image+Coming+Soon';">
+                    <div class="absolute top-4 right-4 bg-green-600 text-white text-[10px] px-3 py-1 rounded-full font-black uppercase">${p.brand}</div>
                 </div>
-            `).join('');
-        }
-
-        function toggleCart() {
-            document.getElementById('cart-items').classList.toggle('hidden');
-        }
-
-        function checkoutWhatsApp() {
-            const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
-            const productNames = cart.map(p => `${p.name} (${p.size})`).join(', ');
-            const message = encodeURIComponent(`New Order from Avinash Store:\nItems: ${productNames}\nTotal Amount: ₹${total}`);
-            window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank');
-        }
-
-        // 5. MODAL LOGIC
-        function showDetails(id) {
-            const p = allProducts.find(prod => prod.id === id);
-            const content = document.getElementById('modal-content');
-            content.innerHTML = `
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <img src="https://via.placeholder.com/300?text=${p.name}" class="w-64 drop-shadow-2xl">
-                    <div class="space-y-4">
-                        <h2 class="text-4xl font-black">${p.name}</h2>
-                        <div class="flex gap-2">
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">${p.brand}</span>
-                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">${p.category}</span>
-                        </div>
-                        <p class="text-lg text-slate-600">${p.desc}</p>
-                        <div class="bg-green-50 p-6 rounded-3xl border border-green-100">
-                            <h4 class="font-black text-green-800 mb-2">HOW TO USE:</h4>
-                            <p class="text-sm text-green-700">${p.usage}</p>
-                        </div>
-                        <p class="text-3xl font-black">₹${p.price}</p>
+                <div class="space-y-2 px-2">
+                    <h3 class="text-2xl font-black text-slate-800 truncate">${p.name}</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-green-600 font-bold bg-green-100 px-2 py-0.5 rounded-md">${p.size}</span>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Acre: ${p.dosage_per_acre}</p>
                     </div>
                 </div>
-            `;
-            document.getElementById('modal').classList.remove('hidden');
-            lucide.createIcons();
-        }
+                <div class="flex justify-between items-end mt-6 px-2 border-t border-slate-100 pt-4">
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Price</p>
+                        <span class="text-3xl font-black text-slate-900">₹${p.price}</span>
+                    </div>
+                    <button onclick="addToCart('${p.id}')" class="bg-green-600 text-white p-4 rounded-2xl hover:bg-black transition-all active:scale-95">
+                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+        lucide.createIcons();
+    }
 
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+    function filterBy(type, value) {
+        const filtered = value === 'All' ? allProducts : allProducts.filter(p => p[type] === value);
+        renderProducts(filtered);
+    }
 
-        // Start everything
-        init();
-    </script>
-</body>
-</html>
+    function addToCart(id) {
+        if (cart[id]) { cart[id].qty += 1; } 
+        else { const product = allProducts.find(p => p.id === id); cart[id] = { ...product, qty: 1 }; }
+        updateCartUI();
+    }
+
+    function removeFromCart(id) {
+        if (cart[id]) { cart[id].qty -= 1; if (cart[id].qty <= 0) delete cart[id]; }
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const items = Object.values(cart);
+        const totalCount = items.reduce((sum, p) => sum + p.qty, 0);
+        const totalPrice = items.reduce((sum, p) => sum + (Number(p.price) * p.qty), 0);
+        document.getElementById('cart-count').innerText = totalCount;
+        document.getElementById('final-total').innerText = totalPrice;
+        document.getElementById('cart-total-display').innerText = totalPrice;
+        const list = document.getElementById('cart-list');
+        if (items.length === 0) { list.innerHTML = `<p class="text-center py-5 text-slate-400">Empty basket</p>`; return; }
+        list.innerHTML = items.map(p => `
+            <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <div class="flex-1">
+                    <p class="font-black text-sm text-slate-800">${p.name}</p>
+                    <p class="text-[10px] text-slate-400">₹${p.price} x ${p.qty}</p>
+                </div>
+                <div class="flex items-center gap-2 bg-white rounded-lg border px-1">
+                    <button onclick="removeFromCart('${p.id}')" class="p-1 text-red-500"><i data-lucide="minus" class="w-3 h-3"></i></button>
+                    <span class="text-sm font-bold">${p.qty}</span>
+                    <button onclick="addToCart('${p.id}')" class="p-1 text-green-600"><i data-lucide="plus" class="w-3 h-3"></i></button>
+                </div>
+            </div>
+        `).join('');
+        lucide.createIcons();
+    }
+
+    function toggleCart() { document.getElementById('cart-items').classList.toggle('hidden'); }
+
+    function checkoutWhatsApp() {
+        const items = Object.values(cart);
+        if(items.length === 0) return alert("Basket is empty!");
+        let msg = "*NEW ORDER - AVINASH STORE*%0A%0A";
+        items.forEach((p, i) => { msg += `${i+1}. *${p.name}* (${p.size}) x ${p.qty} = ₹${p.price * p.qty}%0A`; });
+        msg += `%0A*TOTAL: ₹${document.getElementById('final-total').innerText}*`;
+        window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
+    }
+
+    function showDetails(id) {
+        const p = allProducts.find(prod => prod.id === id);
+        const content = document.getElementById('modal-content');
+        content.innerHTML = `
+            <div class="flex flex-col md:flex-row gap-8 items-center text-slate-800">
+                <div class="bg-slate-50 p-6 rounded-[2rem]"><img src="${p.image}" class="h-64 object-contain mix-blend-multiply"></div>
+                <div class="flex-1 space-y-4">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black uppercase">${p.brand}</span>
+                    <h2 class="text-4xl font-black">${p.name}</h2>
+                    <div class="bg-yellow-50 p-4 rounded-2xl border border-yellow-100">
+                        <h4 class="font-black text-yellow-700 text-xs uppercase mb-1">Acre Spray Guide</h4>
+                        <p class="text-sm font-bold text-yellow-900">${p.usage}</p>
+                        <p class="text-xs text-yellow-700 mt-2 font-black">Total Needed: ${p.dosage_per_acre}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                        <span class="text-4xl font-black text-green-600">₹${p.price}</span>
+                        <button onclick="addToCart('${p.id}'); closeModal();" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-black uppercase shadow-lg">Add to basket</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.getElementById('modal').classList.remove('hidden');
+        lucide.createIcons();
+    }
+
+    function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+    initStore();
+</script>
