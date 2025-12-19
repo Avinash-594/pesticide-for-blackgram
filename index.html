@@ -154,8 +154,6 @@
     lucide.createIcons();
     var swiper = new Swiper(".mySwiper", { speed: 1000, autoplay: { delay: 5000 }, effect: 'fade' });
 
-    // FIX: Wrapped in backticks so multi-line CSV works correctly
-// FIXED: Added closing backtick and semicolon
     const csvData = `id,name,brand,category,size,price,usage,dosage_per_acre,image
 1,Isabion,Syngenta,Nutrient,500ml,780,"Mix 40ml/15L tank (12 tanks/acre). Apply 30-35 days after sowing (flowering). Can mix with Alika or Amistar. DO NOT mix with herbicides.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/isobian.jpg
 2,Alika,Syngenta,Insecticide,80ml,320,"Mix 8ml/15L tank (10 tanks/acre). Apply 20-25 days after sowing for sucking pests. Safe to mix with Isabion/Fungicides.",80ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Alika.jpg
@@ -170,7 +168,8 @@
 11,Cultar,Syngenta,Nutrient,100ml,450,"Mix 10ml/15L tank (10 tanks/acre). Used for growth regulation. Apply 40 days after sowing. Avoid mixing with herbicides.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Cultar.jpg
 12,Rifit,Syngenta,Weed,500ml,550,"Apply 500ml per acre within 3 days of sowing. Pre-emergence. DO NOT mix with any other chemical.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/rifit.jpg
 13,Simodis,Syngenta,Insecticide,80ml,1100,"Mix 8ml/15L tank (10 tanks/acre). High-end protection for Thrips/Mites. Apply 25-30 days after sowing. Safe with Nutrients.",80ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Simodis.jpg
-14,Demand,Syngenta,Insecticide,500ml,1450,"Mix 20ml/15L tank. General pest control. Can mix with Fungicides. Avoid mixing with Isabion/Growth Promoters.",200ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Demand.jpg
+14,Demand,Syngenta,Insecticide,500ml,1450,"Mix 20ml/15L tank. General pest control. Can mix with Fungicides. Avoid mixing with Isabion/Growth Promoters.",200ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Demand.jpg`;
+
     function initStore() {
         Papa.parse(csvData, {
             header: true, 
