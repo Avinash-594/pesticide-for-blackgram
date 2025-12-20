@@ -1,17 +1,15 @@
-name,brand,category,size,price ,image
-Isabion,Syngenta,Growth/Nutrients,1 Litre,"?1,350",isobian.jpg
-Quantis,Syngenta,Growth/Nutrients,400 ml,?599,quantis.jpg
-Cultar,Syngenta,Growth Regulator,50 ml,?301,Cultar.jpg
-Fusiflex,Syngenta,Herbicide (Weed),400 ml,?849,fusiflex.jpg
-Rifit Plus,Syngenta,Herbicide (Weed),600 ml,?539,rifit.jpg
-Touchdown,Syngenta,Herbicide (Weed),1 Litre,?599,
-Topik,Syngenta,Herbicide (Weed),160 g,?405,
-Alika,Syngenta,Insecticide,80 ml,?299,Alika.jpg
-Simodis,Syngenta,Insecticide,80 ml,?779,Simodis.jpg
-Ampligo,Syngenta,Insecticide,200 ml,"?1,900",Ampligo.jpg
-Actara,Syngenta,Insecticide,50 g,?450,actara.jpg
-Amistar Top,Syngenta,Fungicide,200 ml,?979,Amistar top.jpg
-Ridomil Gold,Syngenta,Fungicide,250 g,?519,Ridomil.jpg
-Score,Syngenta,Fungicide,100 ml,?550,score.jpg
-Icon 10 CS,Syngenta,Mosquito Killer,500 ml,"?1,696",icon   10cs.jpg
-Demand 2.5CS,Syngenta,Mosquito Killer,1 Litre,"?1,085",Demand.jpg
+id,name,brand,category,size,price,usage,dosage_per_acre,image
+1,Isabion,Syngenta,Nutrient,500ml,780,"Mix 40ml/15L tank (12 tanks/acre). Apply 30-35 days after sowing (flowering). Can mix with Alika or Amistar. DO NOT mix with herbicides.",500ml per acre,images/syngenta/isobian.jpg
+2,Alika,Syngenta,Insecticide,80ml,320,"Mix 8ml/15L tank (10 tanks/acre). Apply 20-25 days after sowing for sucking pests. Safe to mix with Isabion/Fungicides.",80ml per acre,images/syngenta/Alika.jpg
+3,Amistar Top,Syngenta,Fungicide,200ml,980,"Mix 20ml/15L tank (10 tanks/acre). Apply 40 days after sowing for leaf spots. Can mix with Alika. Avoid mixing with heavy herbicides.",200ml per acre,images/syngenta/Amistar top.jpg
+4,Quantis,Syngenta,Nutrient,1L,1150,"Mix 60ml/15L tank (16 tanks/acre). Apply 45 days after sowing for heat stress. Safe with most Insecticides. Safe with Alika.",1L per acre,images/syngenta/quantis.jpg
+5,Ampligo,Syngenta,Insecticide,100ml,850,"Mix 10ml/15L tank (10 tanks/acre). Apply 30 days after sowing for pod borer. Can mix with nutrients. DO NOT mix with herbicides.",100ml per acre,images/syngenta/Ampligo.jpg
+6,Actara,Syngenta,Insecticide,100g,450,"Mix 10g/15L tank (10 tanks/acre). Apply 15-20 days after sowing. Safe with Nutrients. Can mix with Icon 10CS.",100g per acre,images/syngenta/actara.jpg
+7,Score,Syngenta,Fungicide,250ml,950,"Mix 15ml/15L tank (15 tanks/acre). Apply 50 days after sowing. Safe with Insecticides. Avoid mixing with strong Weedicides.",250ml per acre,images/syngenta/score.jpg
+8,Icon 10CS,Syngenta,Mosquito,500ml,1750,"Mix 20ml/15L tank for crops. Apply anytime for pests. Can mix with Actara. DO NOT mix with Growth Promoters (Isabion).",100ml in 10L water,images/syngenta/icon-10cs.jpg
+9,Ridomil Gold,Syngenta,Fungicide,250g,650,"Mix 25g/15L tank (10 tanks/acre). Apply 15 days after sowing. Safe with most insecticides. DO NOT mix with herbicides.",250g per acre,images/syngenta/Ridomil.jpg
+10,Fusiflex,Syngenta,Weed,500ml,850,"Mix 50ml/15L tank (10 tanks/acre). Apply 15-20 days after sowing on wet soil. SPRAY ALONE. DO NOT mix with anything.",500ml per acre,images/syngenta/fusiflex.jpg
+11,Cultar,Syngenta,Nutrient,100ml,450,"Mix 10ml/15L tank (10 tanks/acre). Used for growth regulation. Apply 40 days after sowing. Avoid mixing with herbicides.",100ml per acre,images/syngenta/Cultar.jpg
+12,Rifit,Syngenta,Weed,500ml,550,"Apply 500ml per acre within 3 days of sowing. Pre-emergence. DO NOT mix with any other chemical.",500ml per acre,images/syngenta/rifit.jpg
+13,Simodis,Syngenta,Insecticide,80ml,1100,"Mix 8ml/15L tank (10 tanks/acre). High-end protection for Thrips/Mites. Apply 25-30 days after sowing. Safe with Nutrients.",80ml per acre,images/syngenta/Simodis.jpg
+14,Demand,Syngenta,Insecticide,500ml,1450,"Mix 20ml/15L tank. General pest control. Can mix with Fungicides. Avoid mixing with Isabion/Growth Promoters.",200ml per acre,images/syngenta/Demand.jpg
