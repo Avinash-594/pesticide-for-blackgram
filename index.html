@@ -72,64 +72,64 @@
         </div>
     </section>
 
-    <div id="shop-section" class="bg-slate-100/95 min-h-screen w-full relative z-10">
-        
-        <div class="max-w-[1600px] mx-auto px-8 pt-16">
-            <div class="glass-panel p-6 rounded-[3rem] flex flex-col lg:flex-row gap-6 items-center justify-between border-b border-white/20">
+   <div id="shop-section" class="bg-slate-100/95 min-h-screen w-full relative z-10">
+    
+    <div class="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md pb-4 transition-all">
+        <div class="max-w-[1600px] mx-auto px-4 md:px-8 pt-4">
+            <div class="glass-panel p-3 md:p-6 rounded-[2rem] md:rounded-[3rem] flex flex-col lg:flex-row gap-3 md:gap-6 items-center justify-between border-b border-white/20 shadow-lg">
+                
                 <div class="relative w-full lg:w-1/2">
-                    <i data-lucide="search" class="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 w-6 h-6"></i>
-                    <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="Search medicine, pest, or brand..." 
-                        class="w-full bg-white border-2 border-slate-100 py-5 pl-16 pr-6 rounded-2xl focus:border-green-500 outline-none font-bold transition-all shadow-inner text-lg">
+                    <i data-lucide="search" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 md:w-6 h-6"></i>
+                    <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="Search..." 
+                        class="w-full bg-white border-2 border-slate-100 py-2.5 md:py-5 pl-10 md:pl-16 pr-6 rounded-xl md:rounded-2xl focus:border-green-500 outline-none font-bold transition-all shadow-inner text-sm md:text-lg">
                 </div>
 
-                <div class="flex items-center gap-4 w-full lg:w-auto">
-                    <button onclick="alert('Smart Advisor: Upload a photo of your leaf to diagnose pests!')" class="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-white hover:bg-green-50 text-slate-800 px-8 py-5 rounded-2xl font-black border-2 border-slate-100 transition-all active:scale-95 shadow-sm">
-                        <i data-lucide="brain-circuit" class="text-green-600 w-6 h-6"></i>
-                        <span>Smart Advisor</span>
+                <div class="flex items-center gap-2 md:gap-4 w-full lg:w-auto">
+                    <button onclick="alert('Smart Advisor: Upload leaf photo coming soon!')" class="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-white hover:bg-green-50 text-slate-800 px-3 md:px-8 py-2.5 md:py-5 rounded-xl md:rounded-2xl font-black border-2 border-slate-100 transition-all active:scale-95 shadow-sm text-xs md:text-base">
+                        <i data-lucide="brain-circuit" class="text-green-600 w-4 h-4 md:w-6 h-6"></i>
+                        <span class="whitespace-nowrap">Advisor</span>
                     </button>
-                    <button onclick="showProcedure()" class="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-white hover:bg-green-50 text-slate-800 px-8 py-5 rounded-2xl font-black border-2 border-slate-100 transition-all active:scale-95 shadow-sm">
-                        <i data-lucide="clipboard-list" class="text-green-600 w-6 h-6"></i>
-                        <span>Best Procedure</span>
+                    <button onclick="showProcedure()" class="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-white hover:bg-green-50 text-slate-800 px-3 md:px-8 py-2.5 md:py-5 rounded-xl md:rounded-2xl font-black border-2 border-slate-100 transition-all active:scale-95 shadow-sm text-xs md:text-base">
+                        <i data-lucide="clipboard-list" class="text-green-600 w-4 h-4 md:w-6 h-6"></i>
+                        <span class="whitespace-nowrap">Procedure</span>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-10 p-8 py-16">
-            <aside class="w-full md:w-80 space-y-8">
-                <div class="glass-panel p-8 rounded-[2.5rem] sticky top-8 text-slate-800">
-                    <div class="flex items-center gap-3 mb-8">
-                        <i data-lucide="filter" class="text-green-600"></i>
-                        <h2 class="text-xl font-black uppercase tracking-widest">Smart Filters</h2>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div>
-                             <h3 class="text-sm font-bold text-green-600 uppercase mb-3">By Brand</h3>
-                             <div class="flex flex-wrap gap-2" id="brand-filters"></div>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-bold text-green-600 uppercase mb-3 mt-6">By Category</h3>
-                            <div class="space-y-2 flex flex-col" id="cat-filters">
-                                <button onclick="filterBy('category', 'All')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-bold transition-all">All Products</button>
-                                <button onclick="filterBy('category', 'Nutrient')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Nutrients</button>
-                                <button onclick="filterBy('category', 'Insecticide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Insecticide</button>
-                                <button onclick="filterBy('category', 'Fungicide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Fungicide</button>
-                                <button onclick="filterBy('category', 'Weed')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Weed Control</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <main class="flex-1">
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <p class="text-slate-500 text-xl col-span-full text-center">Loading professional products...</p>
-                </div>
-            </main>
-        </div>
     </div>
 
+    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-10 p-8 pt-6">
+        <aside class="w-full md:w-80 space-y-8">
+            <div class="glass-panel p-8 rounded-[2.5rem] sticky top-32 text-slate-800">
+                <div class="flex items-center gap-3 mb-8">
+                    <i data-lucide="filter" class="text-green-600"></i>
+                    <h2 class="text-xl font-black uppercase tracking-widest">Smart Filters</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                         <h3 class="text-sm font-bold text-green-600 uppercase mb-3">By Brand</h3>
+                         <div class="flex flex-wrap gap-2" id="brand-filters"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-green-600 uppercase mb-3 mt-6">By Category</h3>
+                        <div class="space-y-2 flex flex-col" id="cat-filters">
+                            <button onclick="filterBy('category', 'All')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-bold transition-all">All Products</button>
+                            <button onclick="filterBy('category', 'Nutrient')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Nutrients</button>
+                            <button onclick="filterBy('category', 'Insecticide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Insecticide</button>
+                            <button onclick="filterBy('category', 'Fungicide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Fungicide</button>
+                            <button onclick="filterBy('category', 'Weed')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Weed Control</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="flex-1">
+             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </main>
+    </div>
+</div>
     <div id="cart-drawer" class="fixed bottom-8 right-8 z-50">
         <button onclick="toggleCart()" class="bg-green-600 hover:bg-green-500 text-white p-4 pr-6 rounded-full shadow-2xl flex items-center gap-4 border-2 border-green-400 scale-110">
             <div class="relative">
