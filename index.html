@@ -1,4 +1,345 @@
-function showProcedure() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Avinash Pesticide Store | Premium Agro-Tech</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+
+        #video-bg {
+            position: fixed;
+            right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
+            z-index: -10;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+        
+        #bg-overlay {
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -5; 
+            backdrop-filter: blur(8px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card { transition: all 0.4s ease; background: white; border-radius: 2.5rem; }
+        .product-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+        .swiper-slide .animate-text { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .swiper-slide-active .animate-text { opacity: 1; transform: translateY(0); }
+        .delay-200 { transition-delay: 0.4s; }
+        .delay-400 { transition-delay: 0.6s; }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <video autoplay muted loop playsinline id="video-bg">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-view-of-a-wheat-field-on-a-summer-afternoon-42362-large.mp4" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
+
+    <section class="h-screen w-full relative">
+        <div class="swiper mySwiper h-full w-full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1920" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                    <div class="relative z-10 text-center space-y-6 max-w-4xl px-4">
+                        <h1 class="animate-text text-7xl font-black tracking-tighter bg-gradient-to-r from-green-400 to-emerald-200 bg-clip-text text-transparent">Avinash Pesticide Store</h1>
+                        <p class="animate-text delay-200 text-3xl font-medium text-white/90">India's Digital Partner for High-Yield Farming.</p>
+                        <div class="animate-text delay-400 pt-8">
+                             <a href="#shop-section" class="bg-green-600 hover:bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-all">Explore Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <div id="shop-section" class="bg-slate-100/95 min-h-screen w-full relative z-10">
+    
+    <div class="sticky top-0 z-50 bg-slate-100/95 backdrop-blur-md pb-2 transition-all">
+        <div class="max-w-[1600px] mx-auto px-4 md:px-8 pt-4">
+            
+            <div class="bg-green-900 p-2 md:p-3 rounded-2xl flex flex-col lg:flex-row gap-3 items-center justify-between border border-green-700 shadow-2xl">
+                
+                <div class="relative w-full lg:max-w-[180px]">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-green-800 w-3.5 h-3.5"></i>
+                    <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="Search..." 
+                        class="w-full bg-slate-200 border border-green-600 py-1.5 pl-9 pr-3 rounded-xl focus:bg-white focus:border-white outline-none font-bold transition-all text-slate-900 placeholder-slate-500 text-[11px]">
+                </div>
+
+                <div class="flex items-center gap-2 w-full lg:w-auto">
+                    <button onclick="alert('Smart Advisor: Upload leaf photo coming soon!')" class="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-green-700 hover:bg-green-600 text-white px-4 py-1.5 rounded-xl font-black transition-all active:scale-95 shadow-sm text-[10px] uppercase tracking-wider border border-green-500/30">
+                        <i data-lucide="brain-circuit" class="w-3.5 h-3.5"></i>
+                        <span class="whitespace-nowrap">Advisor</span>
+                    </button>
+                    <button onclick="showProcedure()" class="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-green-700 hover:bg-green-600 text-white px-4 py-1.5 rounded-xl font-black transition-all active:scale-95 shadow-sm text-[10px] uppercase tracking-wider border border-green-500/30">
+                        <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+                        <span class="whitespace-nowrap">Procedure</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-10 p-8 pt-6">
+        <aside class="w-full md:w-80 space-y-8">
+            <div class="glass-panel p-8 rounded-[2.5rem] sticky top-20 text-slate-800">
+                <div class="flex items-center gap-3 mb-8">
+                    <i data-lucide="filter" class="text-green-600"></i>
+                    <h2 class="text-xl font-black uppercase tracking-widest">Smart Filters</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                         <h3 class="text-sm font-bold text-green-600 uppercase mb-3">By Brand</h3>
+                         <div class="flex flex-wrap gap-2" id="brand-filters"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-green-600 uppercase mb-3 mt-6">By Category</h3>
+                        <div class="space-y-2 flex flex-col" id="cat-filters">
+                            <button onclick="filterBy('category', 'All')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-bold transition-all">All Products</button>
+                            <button onclick="filterBy('category', 'Nutrient')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Nutrients</button>
+                            <button onclick="filterBy('category', 'Insecticide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Insecticide</button>
+                            <button onclick="filterBy('category', 'Fungicide')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Fungicide</button>
+                            <button onclick="filterBy('category', 'Weed')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Weed Control</button>
+                            <button onclick="filterBy('category', 'Bangaruteega Control')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Bangaruteega Control</button>
+                            <button onclick="filterBy('category', 'Mosquito Killer')" class="text-left py-2 px-4 rounded-xl hover:bg-black/5 font-medium transition-all">Mosquito Killer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="flex-1">
+             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </main>
+    </div>
+</div>
+    <div id="cart-drawer" class="fixed bottom-8 right-8 z-50">
+        <button onclick="toggleCart()" class="bg-green-600 hover:bg-green-500 text-white p-4 pr-6 rounded-full shadow-2xl flex items-center gap-4 border-2 border-green-400 scale-110">
+            <div class="relative">
+                 <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+                 <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">0</span>
+            </div>
+            <span class="font-black text-2xl">₹<span id="final-total">0</span></span>
+        </button>
+        <div id="cart-items" class="hidden glass-panel absolute bottom-24 right-0 w-96 p-8 rounded-[2.5rem] text-slate-900 shadow-2xl">
+            <h3 class="font-black text-2xl mb-6 flex justify-between items-center">Your Cart <i data-lucide="shopping-bag" class="text-green-600"></i></h3>
+            <div id="cart-list" class="max-h-[40vh] overflow-y-auto space-y-4 mb-8"></div>
+            <div class="border-t pt-4 mb-6 flex justify-between items-center font-black">
+                <span>Total:</span>
+                <span class="text-2xl text-green-600">₹<span id="cart-total-display">0</span></span>
+            </div>
+            <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg">Order via WhatsApp</button>
+        </div>
+    </div>
+
+    <div id="modal" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white max-w-4xl w-full p-8 md:p-12 rounded-[3rem] relative shadow-2xl">
+             <button onclick="closeModal()" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full hover:bg-red-50 hover:text-red-500 transition-all"><i data-lucide="x"></i></button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        let allProducts = [];
+        let cart = {}; 
+
+        const csvData = `id,name,brand,category,size,price,usage,dosage_per_acre,image
+1,Isabion,Syngenta,Nutrient,500ml,780,"Mix 40ml/15L tank (12 tanks/acre). Apply 30-35 days after sowing (flowering). Can mix with Alika or Amistar. DO NOT mix with herbicides.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/isobian.jpg
+2,Alika,Syngenta,Insecticide,80ml,320,"Mix 8ml/15L tank (10 tanks/acre). Apply 20-25 days after sowing for sucking pests. Safe to mix with Isabion/Fungicides.",80ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Alika.jpg
+3,Amistar Top,Syngenta,Fungicide,200ml,980,"Mix 20ml/15L tank (10 tanks/acre). Apply 40 days after sowing for leaf spots. Can mix with Alika. Avoid mixing with heavy herbicides.",200ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Amistar%20top.jpg
+4,Quantis,Syngenta,Nutrient,1L,1150,"Mix 60ml/15L tank (16 tanks/acre). Apply 45 days after sowing for heat stress. Safe with most Insecticides. Safe with Alika.",1L per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/quantis.jpg
+5,Ampligo,Syngenta,Insecticide,100ml,850,"Mix 10ml/15L tank (10 tanks/acre). Apply 30 days after sowing for pod borer. Can mix with nutrients. DO NOT mix with herbicides.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Ampligo.jpg
+6,Actara,Syngenta,Insecticide,100g,450,"Mix 10g/15L tank (10 tanks/acre). Apply 15-20 days after sowing. Safe with Nutrients. Can mix with Icon 10CS.",100g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/actara.jpg
+7,Score,Syngenta,Fungicide,250ml,950,"Mix 15ml/15L tank (15 tanks/acre). Apply 50 days after sowing. Safe with Insecticides. Avoid mixing with strong Weedicides.",250ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/score.jpg
+8,Icon 10CS,Syngenta,Mosquito,500ml,1750,"Mix 20ml/15L tank for crops. Apply anytime for pests. Can mix with Actara. DO NOT mix with Growth Promoters (Isabion).",100ml in 10L water,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/icon10cs.jpg
+9,Ridomil Gold,Syngenta,Fungicide,250g,650,"Mix 25g/15L tank (10 tanks/acre). Apply 15 days after sowing. Safe with most insecticides. DO NOT mix with herbicides.",250g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Ridomil.jpg
+10,Fusiflex,Syngenta,Weed,500ml,850,"Mix 50ml/15L tank (10 tanks/acre). Apply 15-20 days after sowing on wet soil. SPRAY ALONE. DO NOT mix with anything.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/fusiflex.jpg
+11,Cultar,Syngenta,Nutrient,100ml,450,"Mix 10ml/15L tank (10 tanks/acre). Used for growth regulation. Apply 40 days after sowing. Avoid mixing with herbicides.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Cultar.jpg
+12,Rifit,Syngenta,Weed,500ml,550,"Apply 500ml per acre within 3 days of sowing. Pre-emergence. DO NOT mix with any other chemical.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/rifit.jpg
+13,Simodis,Syngenta,Insecticide,80ml,1100,"Mix 8ml/15L tank (10 tanks/acre). High-end protection for Thrips/Mites. Apply 25-30 days after sowing. Safe with Nutrients.",80ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Simodis.jpg
+14,Demand,Syngenta,Insecticide,500ml,1450,"Mix 20ml/15L tank. General pest control. Can mix with Fungicides. Avoid mixing with Isabion/Growth Promoters.",200ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/syngenta/Demand.jpg
+15,Ambition,Bayer,Nutrient,500ml,880,"Plant growth activator with amino acids. Enhances flowering and reduces flower drop. Apply at 30-35 days.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/ambition.jpg
+16,Belt Expert,Bayer,Insecticide,100ml,1030,"Fast-acting control for Pod Borer and Thrips. Disrupts muscle and nervous system of pests.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/belt expert.jpg
+17,Confidor,Bayer,Insecticide,100ml,375,"Systemic control for sucking pests like Aphids and Jassids. Prevents Yellow Mosaic Virus spread.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/confidor.jpg
+18,Planofix,Bayer,Nutrient,100ml,150,"Stops flower and immature pod shedding. Mix 1ml in 4.5L water for flowering stage spray.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/planofix.jpg
+19,Nativo,Bayer,Fungicide,100g,770,"Controls Powdery Mildew and Leaf Spot. Improves grain shine and weight significantly.",100g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/nativo.jpg
+20,QuickBayt,Bayer,Insecticide,350g,850,"Fly bait for farm hygiene. Use as paint-on or scatter bait around storage areas. NOT for foliar spray.",Scatter bait,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/quick.jpg
+21,Roundup,Bayer,Bangara,1 liter,540,"Non-selective herbicide for spot spray on heavy weed patches or field bunds. Use with caution.",1 liter per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/roundup.jpg
+22,Sencor,Bayer,Herbicide,100g,265,"Pre-emergence herbicide. Spray on moist soil within 3 days of sowing to stop weed germination.",100g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/sencor.jpg
+23,Solomon,Bayer,Insecticide,250ml,850,"Quick knockdown effect on Whiteflies and Aphids. Innovative oil-based formula for better penetration.",200ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/solomon.jpg
+24,Targa Super,Dhanuka,Weed,500ml,780,"The specialist for killing grassy weeds in Blackgram. Safe to spray on the main crop.",400ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/targasuper.jpg
+25,Vayego,Bayer,Insecticide,100ml,1010,"Advanced systemic control for Pod Borers and Girdle Beetle. Long-lasting residual protection.",100ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/Bayer/vayego.jpg
+26,Argyle,UPL,Insecticide,250g,480,"Dual action for Whitefly and Girdle Beetle. Helps manage resistance in pest populations.",100g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/argyle.jpg
+27,Iris,UPL,Weed,400ml,630,"One-shot control for broad-leaf and grassy weeds. Apply 15-25 days after sowing.",400ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/iris.jpg
+28,Lancer Gold,UPL,Insecticide,500g,650,"Premium control for sucking pests like Thrips and Aphids. Mix 400g per acre.",400g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/lancer  gold.jpg
+29,Macarena,UPL,Nutrient,500ml,550,"Bio-stimulant for better plant health and stress resistance. Boosts vegetative growth.",500ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/macarena.jpg
+30,Saaf,UPL,Fungicide,250g,320,"Best for seed treatment or early spray against Root Rot and Leaf Spot.",400g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/saaf.jpg
+31,Shenzi,UPL,Insecticide,60ml,940,"Contains Chlorantraniliprole. Best-in-class protection against Pod Borers.",60ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/upl/shenzi.jpg
+32,Coragen,FMC,Insecticide,60ml,960,"Industry leader for Pod Borer control. Provides 20+ days of crop protection.",60ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/fmc/coragen.jpg
+33,Benevia,FMC,Insecticide,180ml,1510,"Stops sucking pests and caterpillars. Apply early (20-25 days) for best yield start.",240ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/fmc/benevia.jpg
+34,Marshal,FMC,Insecticide,500ml,720,"Stomach and contact poison for Aphids and Borers. Excellent knockdown effect.",400ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/fmc/marshal.jpg
+35,Talstar,FMC,Insecticide,250ml,680,"Broad-spectrum spray for Whitefly, Bollworms, and Leaf Folders.",300ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/fmc/talstar.jpg
+36,Zinatra,FMC,Nutrient,250ml,350,"High concentration Zinc (39.5%). Prevents yellowing of leaves and boosts shoot growth.",150ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/fmc/zintara.jpg
+37,Bahaar,Tata Rallis,Nutrient,250ml,330,"Veg-based growth promoter. Improves chlorophyll and protein synthesis for more pods.",400ml per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/tata/bahaar.jpg
+38,Panida,Tata Rallis,Weed,1 liter,420,"Pre-emergence herbicide (Pendimethalin). Forms a layer to stop weed germination.",1.2 liter per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/tata/panida.jpg
+39,Ralligold,Tata Rallis,Nutrient,100g,530,"Mycorrhizal bio-fertilizer. Dramatically improves root development and nutrient uptake.",200g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/tata/ralligold.jpg
+40,Takumi,Tata Rallis,Insecticide,100g,680,"High-tech granular insecticide for Maruca and Pod Borer. Stop feeding instantly.",100g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/tata/takumi.jpg
+41,Taqat,Tata Rallis,Fungicide,500g,650,"Dual-action contact and systemic fungicide for Anthracnose and Mildew.",300g per acre,https://raw.githubusercontent.com/Avinash-594/pesticide-for-blackgram/main/images/tata/taqat.jpg`;
+        function initStore() {
+            Papa.parse(csvData, {
+                header: true, 
+                skipEmptyLines: true,
+                complete: (res) => {
+                    allProducts = res.data;
+                    populateBrands(allProducts);
+                    renderProducts(allProducts);
+                }
+            });
+            lucide.createIcons();
+            new Swiper(".mySwiper", { speed: 1000, autoplay: { delay: 5000 }, effect: 'fade' });
+        }
+
+        function populateBrands(data) {
+            const brands = [...new Set(data.map(p => p.brand))];
+            const container = document.getElementById('brand-filters');
+            container.innerHTML = `<button onclick="filterBy('brand', 'All')" class="px-4 py-2 bg-green-600 text-white rounded-xl text-xs font-black shadow-lg">All</button>`;
+            brands.forEach(brand => {
+                container.innerHTML += `<button onclick="filterBy('brand', '${brand}')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl text-xs font-bold transition-all ml-1">${brand}</button>`;
+            });
+        }
+
+        function searchProducts() {
+            const term = document.getElementById('productSearch').value.toLowerCase();
+            const filtered = allProducts.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.brand.toLowerCase().includes(term) ||
+                p.category.toLowerCase().includes(term)
+            );
+            renderProducts(filtered);
+        }
+
+        function renderProducts(data) {
+            const grid = document.getElementById('product-grid');
+            if(data.length === 0) {
+                grid.innerHTML = '<p class="text-slate-500 text-xl col-span-full text-center">No products found.</p>';
+                return;
+            }
+            grid.innerHTML = data.map(p => `
+                <div class="product-card p-5 flex flex-col justify-between shadow-sm border border-slate-200">
+                    <div class="bg-slate-50 rounded-[2rem] h-52 mb-5 flex items-center justify-center cursor-pointer relative overflow-hidden" onclick="showDetails('${p.id}')">
+                        <img src="${p.image}" class="h-40 w-full object-contain mix-blend-multiply transition-all duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-green-600 text-white text-[10px] px-3 py-1 rounded-full font-black uppercase">${p.brand}</div>
+                    </div>
+                    <div class="space-y-2 px-2">
+                        <h3 class="text-2xl font-black text-slate-800 truncate">${p.name}</h3>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-green-600 font-bold bg-green-100 px-2 py-0.5 rounded-md">${p.size}</span>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Acre: ${p.dosage_per_acre}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end mt-6 px-2 border-t border-slate-100 pt-4">
+                        <div>
+                            <p class="text-xs text-slate-400 font-semibold uppercase">Price</p>
+                            <span class="text-3xl font-black text-slate-900">₹${p.price}</span>
+                        </div>
+                        <button onclick="addToCart('${p.id}')" class="bg-green-600 text-white p-4 rounded-2xl hover:bg-black transition-all active:scale-95">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function filterBy(type, value) {
+            const filtered = value === 'All' ? allProducts : allProducts.filter(p => p[type] === value);
+            renderProducts(filtered);
+        }
+
+        function addToCart(id) {
+            if (cart[id]) { cart[id].qty += 1; } 
+            else { const product = allProducts.find(p => p.id === id); cart[id] = { ...product, qty: 1 }; }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            if (cart[id]) { cart[id].qty -= 1; if (cart[id].qty <= 0) delete cart[id]; }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const items = Object.values(cart);
+            const totalCount = items.reduce((sum, p) => sum + p.qty, 0);
+            const totalPrice = items.reduce((sum, p) => sum + (Number(p.price) * p.qty), 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('final-total').innerText = totalPrice;
+            document.getElementById('cart-total-display').innerText = totalPrice;
+            const list = document.getElementById('cart-list');
+            if (items.length === 0) { list.innerHTML = `<p class="text-center py-5 text-slate-400">Empty basket</p>`; return; }
+            list.innerHTML = items.map(p => `
+                <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div class="flex-1">
+                        <p class="font-black text-sm text-slate-800">${p.name}</p>
+                        <p class="text-[10px] text-slate-400">₹${p.price} x ${p.qty}</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white rounded-lg border px-1">
+                        <button onclick="removeFromCart('${p.id}')" class="p-1 text-red-500"><i data-lucide="minus" class="w-3 h-3"></i></button>
+                        <span class="text-sm font-bold">${p.qty}</span>
+                        <button onclick="addToCart('${p.id}')" class="p-1 text-green-600"><i data-lucide="plus" class="w-3 h-3"></i></button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function toggleCart() { document.getElementById('cart-items').classList.toggle('hidden'); }
+
+        function showDetails(id) {
+            const p = allProducts.find(prod => prod.id === id);
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-8 items-center text-slate-800">
+                    <div class="bg-slate-50 p-6 rounded-[2rem]"><img src="${p.image}" class="h-64 object-contain mix-blend-multiply"></div>
+                    <div class="flex-1 space-y-4">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black uppercase">${p.brand}</span>
+                        <h2 class="text-4xl font-black">${p.name}</h2>
+                        <div class="bg-yellow-50 p-6 rounded-2xl border border-yellow-100">
+                            <h4 class="font-black text-yellow-700 text-xs uppercase mb-2">Usage Guide</h4>
+                            <p class="text-sm font-bold text-yellow-900">${p.usage}</p>
+                            <p class="text-sm text-yellow-700 mt-2 font-black">Dosage: ${p.dosage_per_acre}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                            <span class="text-4xl font-black text-green-600">₹${p.price}</span>
+                            <button onclick="addToCart('${p.id}'); closeModal();" class="bg-slate-900 text-white px-8 py-4 rounded-xl font-black uppercase shadow-lg hover:bg-green-600 transition-all">Add to basket</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+       function showProcedure() {
     const content = document.getElementById('modal-content');
     content.innerHTML = `
         <div class="space-y-8 max-h-[80vh] overflow-y-auto px-4 py-2 text-slate-800">
@@ -74,3 +415,18 @@ function showProcedure() {
     document.getElementById('modal').classList.remove('hidden');
     lucide.createIcons();
 }
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        function checkoutWhatsApp() {
+            const items = Object.values(cart);
+            if(items.length === 0) return alert("Basket is empty!");
+            let msg = "*ORDER FROM AVINASH STORE*%0A%0A";
+            items.forEach((p, i) => { msg += `${i+1}. *${p.name}* (${p.size}) x ${p.qty} = ₹${p.price * p.qty}%0A`; });
+            msg += `%0A*TOTAL: ₹${document.getElementById('final-total').innerText}*`;
+            window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
+        }
+
+        initStore();
+    </script>
+</body>
+</html>
