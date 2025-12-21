@@ -333,3 +333,175 @@
 
     initStore();
 </script>
+<div class="max-w-[1600px] mx-auto px-8 mb-8">
+    <div class="glass-panel p-4 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-4 shadow-2xl">
+        <div class="relative flex-1 w-full">
+            <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="మందు పేరు లేదా సమస్యను వెతకండి (Search products...)" 
+                class="w-full pl-14 pr-6 py-4 bg-white/50 rounded-2xl border-none focus:ring-2 focus:ring-green-500 outline-none font-bold text-lg">
+        </div>
+
+        <div class="flex items-center gap-3 w-full md:w-auto">
+            <button onclick="showAIResult(finalTeluguAI_DB.days['35'])" class="flex-1 md:flex-none flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-4 rounded-2xl font-black transition-all shadow-lg uppercase tracking-wider">
+                <i data-lucide="award"></i> <span class="hidden sm:inline">Best Procedure</span>
+            </button>
+
+            <button onclick="showFarmersHelp()" class="flex-1 md:flex-none flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-4 rounded-2xl font-black transition-all shadow-lg uppercase tracking-wider animate-pulse">
+                <i data-lucide="bot"></i> <span>Smart Advisor</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- 1. తెలుగు AI మాస్టర్ డేటాబేస్ (A-Z Knowledge Base) ---
+const masterFarmingAI_DB = {
+    "seeds": {
+        title: "🌱 విత్తనం & విత్తే సమయం",
+        info: `<div class='text-left space-y-3'>
+            <p><b>విత్తనం:</b> LBG-752, PU-31 మేలైనవి. ఎకరాకు 6-8 కిలోలు అవసరం.</p>
+            <p><b>విత్తన శుద్ధి:</b> 1kg విత్తనానికి 3gm <b>సాఫ్ (Saaf)</b> వాడండి.</p>
+        </div>`
+    },
+    "fertilizer": {
+        title: "🌾 ఎరువులు & పోషకాలు",
+        info: `<div class='text-left space-y-3'>
+            <p><b>ఎరువులు:</b> ఎకరాకు 50kg DAP, 20kg పొటాష్ వేయాలి.</p>
+            <p><b>మల్టీ-K:</b> 15L ట్యాంకుకు 75gm మల్టీ-K + 25gm బోరాన్ కలిపి కొట్టవచ్చు.</p>
+        </div>`
+    },
+    "pests": {
+        title: "🐛 పురుగుల నివారణ",
+        info: `<div class='text-left space-y-3'>
+            <p><b>నివారణ:</b> పూత దశలో <b>కోరాజెన్</b> లేదా <b>వయేగో</b> సురక్షితం.</p>
+            <p><b>ముతక పురుగు:</b> మరుకా నివారణకు <b>టకుమి</b> వాడండి.</p>
+        </div>`
+    },
+    "diseases": {
+        title: "🦠 వ్యాధులు & ఫంగిసైడ్",
+        info: `<div class='text-left space-y-3'>
+            <p><b>పసుపు మోజాయిక్:</b> దీనికి <b>బెనీవియా</b> లేదా <b>సెఫినా</b> వాడండి.</p>
+            <p><b>గింజ మెరుపు:</b> కాయ దశలో <b>నేటివో</b> పిచికారీ చేయండి.</p>
+        </div>`
+    }
+};
+
+const finalTeluguAI_DB = {
+    "days": {
+        "20": { title: "20 రోజుల దశ (మొదటి స్ప్రే)", info: "ఎదుగుదల కోసం **అలికా (80ml)** + **క్వాంటిస్ (400ml)** వాడండి." },
+        "35": { title: "35-40 రోజుల దశ (పూత దశ)", info: "పూత రాలకుండా **ఇసాబియాన్ (400ml)** + పురుగు కోసం **కోరాజెన్ (60ml)** వాడండి." },
+        "50": { title: "50-60 రోజుల దశ (కాయ దశ)", info: "గింజ లావుగా అవ్వడానికి **వయేగో (100ml)** + మెరుపు కోసం **నేటివో (100g)** వాడండి." }
+    }
+};
+
+// --- 2. స్మార్ట్ అడ్వైజర్ UI (Smart Advisor Panel) ---
+function showFarmersHelp() {
+    const content = document.getElementById('modal-content');
+    content.innerHTML = `
+        <div class="text-center space-y-6">
+            <div class="bg-green-600 p-6 rounded-t-[2.5rem] -m-10 mb-8 text-white">
+                <h2 class="text-3xl font-black">AVINASH SMART ADVISOR</h2>
+                <p class="font-bold opacity-90">మీ పంట సమస్యను అడగండి</p>
+            </div>
+            
+            <div id="ai-ui-main" class="space-y-4">
+                <button onclick="activateAIVoice()" class="w-full flex items-center justify-between p-6 bg-green-100 border-2 border-green-200 rounded-[2rem] hover:bg-green-200 transition-all group">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-green-600 p-3 rounded-full text-white group-hover:scale-110 transition-all"><i data-lucide="mic"></i></div>
+                        <span class="text-xl font-black text-green-800 uppercase">Tap to Speak (మాట్లాడండి)</span>
+                    </div>
+                </button>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="showAIResult(masterFarmingAI_DB.seeds)" class="p-4 bg-slate-50 rounded-2xl font-bold border hover:border-green-500 transition-all">🌱 విత్తనాలు</button>
+                    <button onclick="showAIResult(masterFarmingAI_DB.pests)" class="p-4 bg-slate-50 rounded-2xl font-bold border hover:border-green-500 transition-all">🐛 పురుగులు</button>
+                    <button onclick="showAIResult(masterFarmingAI_DB.fertilizer)" class="p-4 bg-slate-50 rounded-2xl font-bold border hover:border-green-500 transition-all">🌾 ఎరువులు</button>
+                    <button onclick="showAIResult(masterFarmingAI_DB.diseases)" class="p-4 bg-slate-50 rounded-2xl font-bold border hover:border-green-500 transition-all">🦠 వ్యాధులు</button>
+                </div>
+            </div>
+
+            <div id="voice-wave" class="hidden py-8">
+                <div class="flex items-center justify-center gap-2 mb-4 animate-pulse">
+                    <span class="w-2 h-10 bg-green-500 rounded-full"></span>
+                    <span class="w-2 h-16 bg-green-600 rounded-full"></span>
+                    <span class="w-2 h-12 bg-green-400 rounded-full"></span>
+                </div>
+                <p class="text-green-600 font-black tracking-widest uppercase">నేను వింటున్నాను... చెప్పండి</p>
+            </div>
+        </div>
+    `;
+    lucide.createIcons();
+    document.getElementById('modal').classList.remove('hidden');
+}
+
+// --- 3. వాయిస్ మరియు బ్రెయిన్ లాజిక్ (The Brain) ---
+function activateAIVoice() {
+    document.getElementById('ai-ui-main').classList.add('hidden');
+    document.getElementById('voice-wave').classList.remove('hidden');
+    
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'te-IN';
+    
+    recognition.onresult = (event) => {
+        const query = event.results[0][0].transcript.toLowerCase();
+        processAIQuery(query);
+    };
+    recognition.start();
+}
+
+function processAIQuery(query) {
+    // సంఖ్యలను గుర్తించడం (Days)
+    let dayMatch = query.match(/\d+/);
+    if (dayMatch && finalTeluguAI_DB.days[dayMatch[0]]) {
+        showAIResult(finalTeluguAI_DB.days[dayMatch[0]]);
+        return;
+    }
+
+    // కీవర్డ్స్
+    if (query.includes("విత్తన")) showAIResult(masterFarmingAI_DB.seeds);
+    else if (query.includes("పురుగు")) showAIResult(masterFarmingAI_DB.pests);
+    else if (query.includes("ఎరువులు")) showAIResult(masterFarmingAI_DB.fertilizer);
+    else if (query.includes("పసుపు") || query.includes("వ్యాధి")) showAIResult(masterFarmingAI_DB.diseases);
+    else {
+        // ఏమీ దొరకకపోతే సెర్చ్ చేస్తుంది
+        closeModal();
+        document.getElementById('productSearch').value = query;
+        searchProducts();
+    }
+}
+
+function showAIResult(data) {
+    const content = document.getElementById('modal-content');
+    content.innerHTML = `
+        <div class="space-y-6">
+            <div class="bg-indigo-600 p-6 rounded-t-[2.5rem] -m-10 mb-8 text-white">
+                <h2 class="text-2xl font-black">${data.title}</h2>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-[2rem] border-2 border-indigo-100 text-lg leading-relaxed text-slate-800">
+                ${data.info || data.answer}
+            </div>
+            <button onclick="closeModal()" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-lg transition-all active:scale-95">అర్థమైంది</button>
+        </div>
+    `;
+    lucide.createIcons();
+    document.getElementById('modal').classList.remove('hidden');
+    speakTelugu(data.title + " వివరాలు ఇక్కడ ఉన్నాయి.");
+}
+
+function searchProducts() {
+    const term = document.getElementById('productSearch').value.toLowerCase();
+    const filtered = allProducts.filter(p => 
+        p.name.toLowerCase().includes(term) || 
+        p.category.toLowerCase().includes(term) ||
+        p.usage.toLowerCase().includes(term)
+    );
+    renderProducts(filtered);
+}
+
+function speakTelugu(text) {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    msg.lang = 'te-IN';
+    window.speechSynthesis.speak(msg);
+}
+</script>
